@@ -119,6 +119,13 @@ int main() {
             cout << products[0].price << endl;
             cout << products[0].quantity << endl;
         }
+      
+        cout << products[0].productId << endl;
+        cout << products[0].productName << endl;
+        cout << products[0].productDesc << endl;
+        cout << products[0].date << endl;
+        cout << products[0].price << endl;
+        cout << products[0].quantity << endl;
     }
     else {
         cout << "Keyword not found." << endl;
