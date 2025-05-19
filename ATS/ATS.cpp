@@ -51,12 +51,11 @@ struct Product {
     int price;
     int quantity;
 
-    Product() : productId(""), productName(""), productDesc(""), date(""), price(0), quantity(0) {}
-
     Product(string id = "", string name = "", string desc = "", string d = "", int pr = 0, int noOf = 0)
-        : productId(id), productName(name), productDesc(desc), date(d), price(0), quantity(noOf) {
+        : productId(id), productName(name), productDesc(desc), date(d), price(pr), quantity(noOf) {
     }
 };
+
 
 Product askProductDetails() {
     Product p;
@@ -71,7 +70,7 @@ Product askProductDetails() {
 
     p.date = getCurrentDateTime();
 
-    cout << "Price: ";
+    cout << "Price (NZD): ";
     cin >> p.price;
 
     cout << "Quantity: ";
