@@ -51,11 +51,11 @@ struct Product {
     int price;
     int quantity;
 
+
     Product(string id = "", string name = "", string desc = "", string d = "", int pr = 0, int noOf = 0)
         : productId(id), productName(name), productDesc(desc), date(d), price(pr), quantity(noOf) {
     }
 };
-
 
 Product askProductDetails() {
     Product p;
@@ -118,6 +118,13 @@ int main() {
             cout << products[0].price << endl;
             cout << products[0].quantity << endl;
         }
+      
+        cout << products[0].productId << endl;
+        cout << products[0].productName << endl;
+        cout << products[0].productDesc << endl;
+        cout << products[0].date << endl;
+        cout << products[0].price << endl;
+        cout << products[0].quantity << endl;
     }
     else {
         cout << "Keyword not found." << endl;
