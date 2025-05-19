@@ -4,21 +4,9 @@
 #include <iomanip>
 #include <sstream>
 #include <vector>
+#include <random>
 
 using namespace std;
-
-struct Product {
-    string productName;
-    string productDesc;
-    string date;
-    int noOfProduct;
-
-    Product() : productName(""), productDesc(""), date(""), noOfProduct(0) {}
-
-    Product(string name, string desc = "", string d = "", int noOf = 0)
-        : productName(name), productDesc(desc), date(d), noOfProduct(noOf) {
-    }
-};
 
 string getCurrentDateTime() {
     auto now = chrono::system_clock::now();
@@ -34,19 +22,60 @@ string getCurrentDateTime() {
     return oss.str();
 }
 
+
+string generateProductID() {
+    string dateTime = getCurrentDateTime();
+
+    string datePart = dateTime.substr(0, 10);
+    string timePart = dateTime.substr(11, 8);
+
+    datePart.erase(remove(datePart.begin(), datePart.end(), '-'), datePart.end());
+    timePart.erase(remove(timePart.begin(), timePart.end(), ':'), timePart.end());
+
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dis(1000, 9999);
+    int random_number = dis(gen);
+
+    ostringstream productID;
+    productID << datePart << timePart << random_number;
+
+    return productID.str();
+}
+
+struct Product {
+    string productId;
+    string productName;
+    string productDesc;
+    string date;
+    int price;
+    int quantity;
+
+    Product() : productId(""), productName(""), productDesc(""), date(""), price(0), quantity(0) {}
+
+    Product(string name, string id = "", string desc = "", string d = "", int pr = 0, int noOf = 0)
+        : productId(id), productName(name), productDesc(desc), date(d), price(0), quantity(noOf) {
+    }
+};
+
 Product askProductDetails() {
     Product p;
 
-    cout << "Enter name of Product: ";
+    p.productId = generateProductID();
+
+    cout << "Name: ";
     getline(cin, p.productName);
 
-    cout << "Enter description of Product (optional): ";
+    cout << "Description (optional): ";
     getline(cin, p.productDesc);
 
     p.date = getCurrentDateTime();
 
-    cout << "Enter number of products: ";
-    cin >> p.noOfProduct;
+    cout << "Price: ";
+    cin >> p.price;
+
+    cout << "Quantity: ";
+    cin >> p.quantity;
 
     cin.ignore();
     return p;
@@ -66,10 +95,12 @@ int main() {
         tempProduct = askProductDetails();
         products.push_back(tempProduct);
 
+        cout << products[0].productId << endl;
         cout << products[0].productName << endl;
         cout << products[0].productDesc << endl;
         cout << products[0].date << endl;
-        cout << products[0].noOfProduct << endl;
+        cout << products[0].price << endl;
+        cout << products[0].quantity << endl;
     }
     else {
         cout << "Keyword not found." << endl;
