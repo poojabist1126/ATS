@@ -1,4 +1,3 @@
-// math_utils.hpp
 #ifndef PRODUCTADD_UTILS_HPP
 #define PRODUCTADD_UTILS_HPP
 

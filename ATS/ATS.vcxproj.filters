@@ -21,9 +21,15 @@
     <ClCompile Include="productadd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="employeeadd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="productadd_utils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="employeeadd_utils.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
