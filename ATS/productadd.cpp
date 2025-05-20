@@ -1,4 +1,3 @@
-// math_utils.cpp
 #include "productadd_utils.hpp"
 #include <iostream>
 #include <chrono>
