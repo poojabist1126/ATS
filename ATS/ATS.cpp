@@ -7,14 +7,8 @@
 
 using namespace std;
 
-int main() {
-    vector<Product> products;
-
+vector<string> getCommand() {
     string command;
-
-    bool productAddValid = true;
-
-    cout << "Enter command: ";
     getline(cin, command);
 
     istringstream iss(command);
@@ -25,14 +19,12 @@ int main() {
         words.push_back(word);
     }
 
-    if (words[0] == "add") {
-        if (words[1] == "product") {
-            askProductDetails();
-        }
-        else if (words[1] == "employee") {
-            askEmployeeDetails();
-        }
-    }
+    return words;
+}
+
+int main() {
+    vector<string> command;
+    command = getCommand();
 
     return 0;
 }
