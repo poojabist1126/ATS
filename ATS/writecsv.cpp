@@ -21,9 +21,8 @@ void writeCsvFile(const std::string& filename, const std::vector<std::vector<std
             outputFile << "\n"; 
         }
         outputFile.close();
-        std::cout << "Data added successfully." << std::endl; 
     }
     else {
-        std::cerr << "Error: Unable to open file " << filename << "." << std::endl;
+        std::cerr << "Error: Unable to access data." << std::endl;
     }
 }
