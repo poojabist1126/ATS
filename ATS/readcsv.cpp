@@ -19,10 +19,9 @@ vector<vector<string>> readCsvFile(const string& filename) {
             data.push_back(row);
         }
         inputFile.close();
-        cout << "Success." << endl;
     }
     else {
-        cerr << "Error: Unable to open file." << endl;
+        cerr << "Error: Unable access the information." << endl;
     }
     return data;
 }

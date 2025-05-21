@@ -25,23 +25,67 @@ vector<string> getCommand() {
     return words;
 }
 
-int main() {
-    vector<vector<string>> myData = {
-       {"Bob", "25", "London"},
-       {"Charlie", "35", "This is new"}
-    };
+bool checkUser(string username, string password, string filePath) {
+    vector<vector<string>> adminInfo = readCsvFile(filePath);
+    int i = 0;
 
-    writeCsvFile("pw.csv", myData, true);
+    for (i = 0; i < adminInfo.size(); i++) {
+        if (username == adminInfo[i][0]) {
+            if (password == adminInfo[i][1]) {
+                return true;
+            }
+            else {
+                return false;
+            }
 
-    vector<vector<string>> readData = readCsvFile("pw.csv");
-
-    cout << "\n--- Read Data (with using namespace std;) ---\n";
-    for (const auto& row : readData) {
-        for (const auto& field : row) {
-            cout << field << "\t";
+            break;
         }
-        cout << "\n";
     }
+
+    return false;
+}
+
+vector<string> userStatusFunc(vector<string> command) {
+    string username = "", password = "";
+    vector<string> res;
+    res = { "n", username };
+
+    if (command.size() == 1) {
+        cout << "Username: ";
+        getline(cin, username);
+
+        cout << "Password: ";
+        getline(cin, password);
+
+        if (checkUser(username, password, "customer_credentials.csv")) {
+            res = { "c", username };
+        }
+    }
+    else if (command[1] == "admin") {
+        cout << "Username: ";
+        getline(cin, username);
+
+        cout << "Password: ";
+        getline(cin, password);
+
+        if (checkUser(username, password, "admin_credentials.csv")) {
+            res = { "a", username };
+        }
+    }
+
+    return res;
+}
+
+int main() {
+    vector<string> command;
+    vector<string> userStatus;
+
+    command = getCommand();
+
+    if (command[0] == "login") {
+        userStatus = userStatusFunc(command);
+    }
+
 
     return 0;
 }
