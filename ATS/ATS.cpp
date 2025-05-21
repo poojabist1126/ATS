@@ -71,6 +71,7 @@ vector<string> userLogin(vector<string> command) {
 
         if (checkUser(username, password, "customer_credentials.csv")) {
             res = { "c", username };
+            cout << "You have successfully login." << endl;
         }
         else {
             cout << "Username or password doesnot matched." << endl;
@@ -85,6 +86,7 @@ vector<string> userLogin(vector<string> command) {
 
         if (checkUser(username, password, "admin_credentials.csv")) {
             res = { "a", username };
+            cout << "You have successfully login." << endl;
         }
         else {
             cout << "Username or password doesnot matched." << endl;
@@ -133,7 +135,7 @@ int main() {
     vector<string> command;
     vector<string> userStatus = { "n", "" };
 
-    //command = getCommand();
+    command = getCommand();
 
     if (command[0] == "login") {
         userStatus = userLogin(command);
