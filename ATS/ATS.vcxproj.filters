@@ -24,6 +24,9 @@
     <ClCompile Include="employeeadd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="modcsv.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="productadd_utils.hpp">
@@ -32,5 +35,12 @@
     <ClInclude Include="employeeadd_utils.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="modcsv.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="admin_credentials.csv" />
+    <None Include="customer_credentials.csv" />
   </ItemGroup>
 </Project>
