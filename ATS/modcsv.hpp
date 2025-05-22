@@ -17,4 +17,10 @@ void updateDetails(
     const std::vector<std::string>& newRow
 );
 
+void deleteDetails(
+    const std::string& filename,
+    size_t matchColumnIndex,
+    const std::string& matchValue
+);
+
 #endif

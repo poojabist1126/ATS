@@ -35,3 +35,59 @@ void updateDetails(vector<string> command) {
         cout << "Please enter a valid command. To check valid commands, type 'help'." << endl;
     }
 }
+
+void addDetails(vector<string> command) {
+    if (command[1] == "product") {
+        Product p;
+
+        p = askProductDetails();
+
+        if (p.productName == "" || p.price == "" || p.quantity == "") {
+            cout << "Required fields cannot be empty. Product add failed. Try again." << endl;
+        }
+        else {
+            writeCsvFile("product_details.csv", { {p.productId, p.productName, p.productDesc, p.date, p.price, p.quantity} }, true);
+            cout << "Product add successful. The product id is " << p.productId << "." << endl;
+        }
+    }
+    else if (command[1] == "employee") {
+        Employee e;
+
+        e = askEmployeeDetails();
+
+        if (e.name == "" || e.position == "" || e.email == "" || e.contactNum == "" || e.gender == "" || e.DOB == "") {
+            cout << "Required fields cannot be empty. Product add failed. Try again." << endl;
+        }
+        else {
+            writeCsvFile("employee_details.csv", { {e.id, e.name, e.position, e.email, e.contactNum, e.gender, e.DOB, e.joinedDate} }, true);
+            cout << "Employee add successful. The employee id is " << e.id << "." << endl;
+        }
+    }
+}
+
+void deleteDetails(vector<string> command) {
+    if (command[1] == "product") {
+        string id;
+        if (command.size() == 2) {
+            cout << "Enter id: ";
+            getline(cin, id);
+            id = trim(id);
+        }
+        else {
+            id = trim(command[2]);
+        }
+        deleteDetails("product_details.csv", 0, id);
+    }
+    else if (command[1] == "employee") {
+        string id;
+        if (command.size() == 2) {
+            cout << "Enter id: ";
+            getline(cin, id);
+            id = trim(id);
+        }
+        else {
+            id = trim(command[2]);
+        }
+        deleteDetails("emplyee_details.csv", 0, id);
+    }
+}

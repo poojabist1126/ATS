@@ -31,6 +31,19 @@ int main() {
         else
             cout << "Please enter a valid command. To check valid commands, type 'help'." << endl;
     }
+    else if (command[0] == "add") {
+        if (command.size() > 1)
+            addDetails(command);
+        else
+            cout << "Please enter a valid command. To check valid commands, type 'help'." << endl;
+    }
+    else if (command[0] == "delete") {
+        if (command.size() > 1)
+            deleteDetails(command);
+        else
+            cout << "Please enter a valid command. To check valid commands, type 'help'." << endl;
+    }
+
 
     return 0;
 }
