@@ -65,7 +65,7 @@ vector<string> userLogin(vector<string> command) {
     return res;
 }
 
-vector<string> userSignup(vector<string> command) {
+vector<string> userSignup() {
     string username, password, confPassword;
     vector<string> res;
     res = { "n", username };

@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="adu.cpp" />
     <ClCompile Include="ATS.cpp" />
     <ClCompile Include="commonfunc.cpp" />
     <ClCompile Include="employeeadd.cpp" />
@@ -135,6 +136,7 @@
     <ClCompile Include="userauthentication.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="adu.hpp" />
     <ClInclude Include="commonfunc.hpp" />
     <ClInclude Include="employeeadd_utils.hpp" />
     <ClInclude Include="productadd_utils.hpp" />

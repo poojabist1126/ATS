@@ -68,7 +68,8 @@ void updateDetails(
             }
 
             for (size_t i = 0; i < newRow.size(); ++i) {
-                row[i] = newRow[i];
+                if (newRow[i] != "")
+                    row[i] = newRow[i];
             }
 
             found = true;
@@ -78,8 +79,9 @@ void updateDetails(
 
     if (found) {
         writeCsvFile(filename, data, false);
+        std::cout << "Successful." << std::endl;
     }
     else {
-        std::cerr << "Error: No row found with value '" << matchValue << "' in column " << matchColumnIndex << "." << std::endl;
+        std::cerr << "Error: No details found." << std::endl;
     }
 }
