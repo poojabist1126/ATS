@@ -14,10 +14,10 @@ struct Product {
     string productName;
     string productDesc;
     string date;
-    int price;
-    int quantity;
+    string price;
+    string quantity;
 
-    Product(string id = "", string name = "", string desc = "", string d = "", int pr = 0, int noOf = 0)
+    Product(string id = "", string name = "", string desc = "", string d = "", string pr = "", string noOf = "")
         : productId(id), productName(name), productDesc(desc), date(d), price(pr), quantity(noOf) {
     }
 };

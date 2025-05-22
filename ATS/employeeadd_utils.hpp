@@ -13,11 +13,11 @@ struct Employee {
     string id;
     string name;
     string position;
-    char gender;
+    string gender;
     string joinedDate;
     string DOB;
 
-    Employee(string id = "", string name = "", string position = "", char gender = ' ', string joinedDate = "", string DOB = "")
+    Employee(string id = "", string name = "", string position = "", string gender = "", string joinedDate = "", string DOB = "")
         : id(id), name(name), position(position), gender(gender), joinedDate(joinedDate), DOB(DOB) {
     }
 };

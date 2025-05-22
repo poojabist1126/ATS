@@ -1,4 +1,5 @@
 #include "productadd_utils.hpp"
+#include "commonfunc.hpp"
 #include <iostream>
 #include <chrono>
 #include <iomanip>
@@ -33,17 +34,21 @@ Product askProductDetails() {
 
     cout << "Name: ";
     getline(cin, p.productName);
+    p.productName = trim(p.productName);
 
     cout << "Description (optional): ";
     getline(cin, p.productDesc);
+    p.productDesc = trim(p.productDesc);
 
     p.date = getCurrentDateTime();
 
     cout << "Price (NZD): ";
-    cin >> p.price;
+    getline(cin, p.price);
+    p.price = trim(p.price);
 
     cout << "Quantity: ";
-    cin >> p.quantity;
+    getline(cin, p.quantity);
+    p.quantity = trim(p.quantity);
 
     cin.ignore();
     return p;

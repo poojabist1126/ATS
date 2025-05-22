@@ -39,7 +39,7 @@ Employee askEmployeeDetails() {
     getline(cin, emp.position);
 
     cout << "Gender (m/f): ";
-    cin >> emp.gender;
+    getline(cin, emp.gender);
 
     cout << "Date of Birth (YYYY-MM-DD): ";
     getline(cin, emp.DOB);
