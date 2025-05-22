@@ -5,5 +5,6 @@
 #include <vector>
 
 void updateDetails(std::vector<std::string> command);
+void addDetails(std::vector<std::string> command);
 
 #endif

@@ -38,6 +38,12 @@ Employee askEmployeeDetails() {
     cout << "Position: ";
     getline(cin, emp.position);
 
+    cout << "Email: ";
+    getline(cin, emp.email);
+
+    cout << "Contact number: ";
+    getline(cin, emp.contactNum);
+
     cout << "Gender (m/f): ";
     getline(cin, emp.gender);
 
