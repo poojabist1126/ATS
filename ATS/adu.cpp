@@ -64,3 +64,30 @@ void addDetails(vector<string> command) {
         }
     }
 }
+
+void deleteDetails(vector<string> command) {
+    if (command[1] == "product") {
+        string id;
+        if (command.size() == 2) {
+            cout << "Enter id: ";
+            getline(cin, id);
+            id = trim(id);
+        }
+        else {
+            id = trim(command[2]);
+        }
+        deleteDetails("product_details.csv", 0, id);
+    }
+    else if (command[1] == "employee") {
+        string id;
+        if (command.size() == 2) {
+            cout << "Enter id: ";
+            getline(cin, id);
+            id = trim(id);
+        }
+        else {
+            id = trim(command[2]);
+        }
+        deleteDetails("emplyee_details.csv", 0, id);
+    }
+}

@@ -85,3 +85,29 @@ void updateDetails(
         std::cerr << "Error: No details found." << std::endl;
     }
 }
+
+void deleteDetails(
+    const std::string& filename,
+    size_t matchColumnIndex,          
+    const std::string& matchValue    
+) {
+    auto data = readCsvFile(filename);
+    bool found = false;
+
+    std::vector<std::vector<std::string>> updatedData;
+
+    for (const auto& row : data) {
+        if (row.size() > matchColumnIndex && row[matchColumnIndex] == matchValue) {
+            found = true; 
+            continue;
+        }
+        updatedData.push_back(row);  
+    }
+
+    if (found) {
+        writeCsvFile(filename, updatedData, false);  
+    }
+    else {
+        std::cerr << "Error: No row found with value '" << matchValue << "'." << std::endl;
+    }
+}
