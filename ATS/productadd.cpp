@@ -6,20 +6,6 @@
 #include <random>
 #include <string>
 
-string getCurrentDateTime() {
-    auto now = chrono::system_clock::now();
-
-    time_t now_c = chrono::system_clock::to_time_t(now);
-
-    ostringstream oss;
-
-    struct tm buf;
-    localtime_s(&buf, &now_c);
-    oss << put_time(&buf, "%Y-%m-%d %H:%M:%S");
-
-    return oss.str();
-}
-
 string generateProductID() {
     string dateTime = getCurrentDateTime();
 

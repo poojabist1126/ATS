@@ -27,6 +27,12 @@
     <ClCompile Include="modcsv.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="userauthentication.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="commonfunc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="productadd_utils.hpp">
@@ -36,6 +42,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="modcsv.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="userauthentication.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="commonfunc.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
