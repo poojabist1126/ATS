@@ -1,0 +1,8 @@
+These are the command lines.
+show <product | employee> - to show products or employees details in table
+delete <product | employee> <id> - to delete
+add <product | employee> - to add new details
+update <product | employee> - to update details
+login <admin | none> - to login, type nothing after login keyword to login as customer or type admin after login keyword to login as an admin
+signup - to signup as customer
+help - to look commands

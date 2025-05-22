@@ -50,6 +50,21 @@ int main() {
         else
             cout << "Please enter a valid command. To check valid commands, type 'help'." << endl;
     }
+    else if (command[0] == "help") {
+        ifstream inputFile("help.txt");
+        string line;
+
+        if (inputFile.is_open()) {
+            while (getline(inputFile, line)) {
+                cout << line << endl;
+            }
+            inputFile.close();
+        }
+        else {
+            cerr << "Unable to open file" << endl;
+        }
+
+    }
 
     return 0;
 }
