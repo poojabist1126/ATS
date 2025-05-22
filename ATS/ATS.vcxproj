@@ -128,12 +128,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ATS.cpp" />
+    <ClCompile Include="commonfunc.cpp" />
     <ClCompile Include="employeeadd.cpp" />
     <ClCompile Include="productadd.cpp" />
+    <ClCompile Include="modcsv.cpp" />
+    <ClCompile Include="userauthentication.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="commonfunc.hpp" />
     <ClInclude Include="employeeadd_utils.hpp" />
     <ClInclude Include="productadd_utils.hpp" />
+    <ClInclude Include="modcsv.hpp" />
+    <ClInclude Include="userauthentication.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="admin_credentials.csv" />
+    <None Include="customer_credentials.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
