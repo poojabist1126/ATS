@@ -15,10 +15,10 @@ void writeCsvFile(const std::string& filename, const std::vector<std::vector<std
             for (size_t i = 0; i < row.size(); ++i) {
                 outputFile << row[i];
                 if (i < row.size() - 1) {
-                    outputFile << ","; 
+                    outputFile << ",";
                 }
             }
-            outputFile << "\n"; 
+            outputFile << "\n";
         }
         outputFile.close();
     }
@@ -50,4 +50,36 @@ std::vector<std::vector<std::string>> readCsvFile(const std::string& filename) {
         std::cerr << "Error: Unable access the information." << std::endl;
     }
     return data;
+}
+
+void updateDetails(
+    const std::string& filename,
+    size_t matchColumnIndex,
+    const std::string& matchValue,
+    const std::vector<std::string>& newRow
+) {
+    auto data = readCsvFile(filename);
+    bool found = false;
+
+    for (auto& row : data) {
+        if (row.size() > matchColumnIndex && row[matchColumnIndex] == matchValue) {
+            if (row.size() < newRow.size()) {
+                row.resize(newRow.size());
+            }
+
+            for (size_t i = 0; i < newRow.size(); ++i) {
+                row[i] = newRow[i];
+            }
+
+            found = true;
+            break;
+        }
+    }
+
+    if (found) {
+        writeCsvFile(filename, data, false);
+    }
+    else {
+        std::cerr << "Error: No row found with value '" << matchValue << "' in column " << matchColumnIndex << "." << std::endl;
+    }
 }

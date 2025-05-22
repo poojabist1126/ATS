@@ -54,5 +54,7 @@
   <ItemGroup>
     <None Include="admin_credentials.csv" />
     <None Include="customer_credentials.csv" />
+    <None Include="employee_details.csv" />
+    <None Include="product_details.csv" />
   </ItemGroup>
 </Project>
