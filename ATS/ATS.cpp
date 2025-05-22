@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <iomanip>
 #include "productadd_utils.hpp"
 #include "employeeadd_utils.hpp"
 #include "modcsv.hpp"
@@ -43,7 +44,12 @@ int main() {
         else
             cout << "Please enter a valid command. To check valid commands, type 'help'." << endl;
     }
-
+    else if (command[0] == "show") {
+        if (command.size() > 1 && (command[1] == "product" || command[1] == "employee"))
+            displayTable(readCsvFile(command[1] + "_details.csv"));
+        else
+            cout << "Please enter a valid command. To check valid commands, type 'help'." << endl;
+    }
 
     return 0;
 }

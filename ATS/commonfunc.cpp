@@ -48,3 +48,43 @@ string trim(const string& s) {
 
     return (start < end) ? string(start, end) : "";
 }
+
+void displayTable(const vector<vector<string>>& data) {
+    if (data.empty()) {
+        cout << "Empty table." << endl;
+        return;
+    }
+
+    size_t numCols = 0;
+    for (const auto& row : data) {
+        numCols = max(numCols, row.size());
+    }
+
+    vector<size_t> colWidths(numCols, 0);
+    for (const auto& row : data) {
+        for (size_t i = 0; i < row.size(); ++i) {
+            colWidths[i] = max(colWidths[i], row[i].length());
+        }
+    }
+
+    for (size_t r = 0; r < data.size(); ++r) {
+        for (size_t c = 0; c < numCols; ++c) {
+            string cell = (c < data[r].size()) ? data[r][c] : "";
+            cout << left << setw(colWidths[c] + 2) << cell;
+        }
+        cout << endl;
+
+        if (r == 0) {
+            for (size_t c = 0; c < numCols; ++c) {
+                cout << string(colWidths[c] + 2, '*');
+            }
+            cout << endl;
+        }
+        else {
+            for (size_t c = 0; c < numCols; ++c) {
+                cout << string(colWidths[c] + 2, '-');
+            }
+            cout << endl;
+        }
+    }
+}
