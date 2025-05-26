@@ -18,19 +18,36 @@ using namespace std;
 
 int main() {
     vector<string> command;
-    vector<string> userStatus = { "n", "" };
+    map<string, string> user = { {"username", ""}, {"type", ""} };
 
-    command = getCommand();
+    cout << "Welcome to Aotearoa Treasures’ inventory management system\n" << endl;
 
-    if (command[0] == "signup") {
-        cout << "Please enter the details.\n" << endl;
+    cout << "Please login to use this software. If you don't have account, please create one." << endl;
+    cout << "Type 'login' to login." << endl;
+    cout << "Type 'signup' to create account.\n" << endl;
 
-        Customer c;
+    cout << "If you want to see list of commands, please type 'help'.\n" << endl;
 
-        c.appendDetails();
-    }
+    do {
+        cout << ">>> ";
+        command = getCommand();
 
+        if (command[0] == "signup") {
+            cout << "Please enter the details.\n" << endl;
 
+            Customer c;
+
+            vector<string> details = c.appendDetails();
+
+            user["username"] = details[1];
+            user["type"] = "c";
+
+            cout << "Congratulations, " + details[0] + " you have successfully created account as " + user["username"] + "." << endl;
+        }
+
+    } while (command[0] != "exit");
+
+    
     //if (command[0] == "login") {
     //    if (command.size() > 1)
     //        userStatus = userLogin(command);

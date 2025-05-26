@@ -64,8 +64,10 @@ vector<string> Customer::getDetails() {
     return { name, username, email, password, getCurrentDateTime() };
 }
 
-void Customer::appendDetails() {
+vector<string> Customer::appendDetails() {
     vector<string> details = getDetails();
 
     writeCsvFile("customer_details.csv", { details }, true);
+
+    return details;
 }

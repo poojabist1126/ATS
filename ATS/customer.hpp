@@ -14,7 +14,7 @@ private:
     std::string res;
 public:
     std::vector<std::string> getDetails();
-    void appendDetails();
+    std::vector<std::string> appendDetails();
 };
 
 #endif
