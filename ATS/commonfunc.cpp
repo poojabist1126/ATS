@@ -5,6 +5,8 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <regex>
+#include <random>
 
 using namespace std;
 
@@ -87,4 +89,48 @@ void displayTable(const vector<vector<string>>& data) {
             cout << endl;
         }
     }
+}
+
+string generateRandomNumByTime() {
+    string dateTime = getCurrentDateTime();
+
+    string datePart = dateTime.substr(0, 10);
+    string timePart = dateTime.substr(11, 8);
+
+    datePart.erase(remove(datePart.begin(), datePart.end(), '-'), datePart.end());
+    timePart.erase(remove(timePart.begin(), timePart.end(), ':'), timePart.end());
+
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dis(1, 9);
+    int random_number = dis(gen);
+
+    ostringstream randn;
+    randn << datePart << timePart << random_number;
+
+    return randn.str();
+}
+
+bool isValidEmail(const std::string& email) {
+    if (email.empty())
+        return false;
+
+    const regex pattern(R"(^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$)");
+    return regex_match(email, pattern);
+}
+
+bool isValidPassword(const std::string& password) {
+    if (password.length() < 6 || password.empty()) {
+        return false;
+    }
+
+    bool hasUpper = false;
+    bool hasDigit = false;
+
+    for (char ch : password) {
+        if (isupper(ch)) hasUpper = true;
+        if (isdigit(ch)) hasDigit = true;
+    }
+
+    return hasUpper && hasDigit;
 }
