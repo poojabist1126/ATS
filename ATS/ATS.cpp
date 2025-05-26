@@ -130,7 +130,6 @@ public:
         vector<string> details = getDetails();
 
         writeCsvFile("customer_details.csv", { details }, true);
-
         return true;
         
     }
