@@ -130,6 +130,7 @@
     <ClCompile Include="adu.cpp" />
     <ClCompile Include="ATS.cpp" />
     <ClCompile Include="commonfunc.cpp" />
+    <ClCompile Include="customer.cpp" />
     <ClCompile Include="employeeadd.cpp" />
     <ClCompile Include="productadd.cpp" />
     <ClCompile Include="modcsv.cpp" />
@@ -141,11 +142,13 @@
     <ClInclude Include="employeeadd_utils.hpp" />
     <ClInclude Include="productadd_utils.hpp" />
     <ClInclude Include="modcsv.hpp" />
+    <ClInclude Include="customer.hpp" />
     <ClInclude Include="userauthentication.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="admin_credentials.csv" />
     <None Include="customer_credentials.csv" />
+    <None Include="customer_details.csv" />
     <None Include="employee_details.csv" />
     <None Include="product_details.csv" />
   </ItemGroup>
