@@ -18,36 +18,30 @@
     <ClCompile Include="ATS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="productadd.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="employeeadd.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="modcsv.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="userauthentication.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="commonfunc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="customer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="employee.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="productadd_utils.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="employeeadd_utils.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="modcsv.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="userauthentication.hpp">
+    <ClInclude Include="commonfunc.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="commonfunc.hpp">
+    <ClInclude Include="customer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="employee.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -56,5 +50,9 @@
     <None Include="customer_credentials.csv" />
     <None Include="employee_details.csv" />
     <None Include="product_details.csv" />
+    <None Include="customer_details.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="help.txt" />
   </ItemGroup>
 </Project>

@@ -6,12 +6,8 @@
 #include <regex>
 #include <map>
 
-#include "productadd_utils.hpp"
-#include "employeeadd_utils.hpp"
 #include "modcsv.hpp"
-#include "userauthentication.hpp"
 #include "commonfunc.hpp"
-#include "adu.hpp"
 #include "customer.hpp"
 
 using namespace std;
@@ -44,6 +40,53 @@ int main() {
 
             cout << "Congratulations, " + details[0] + " you have successfully created account as " + user["username"] + "." << endl;
         }
+        else if (command[0] == "login") {
+            Customer c;
+            string username, password;
+            vector<string> details;
+
+            cout << "Username: ";
+            getline(cin, username);
+
+            if (c.isUserExist(username)) {
+                cout << "Password: ";
+                getline(cin, password);
+
+                details = c.getDetails(username);
+                if (details[3] == trim(password)) {
+                    user["username"] = trim(username);
+                    user["type"] = "c";
+
+                    cout << "Welcome " << details[0] << ", login successful." << endl;
+                }
+                else {
+                    cout << "Login failed. Password doesn't matched." << endl;
+                }
+            }
+            else {
+                cout << "User doesn't exists, please enter valid username. If you don't have account please signup.\nTo signup, please type 'signup'. Thank You" << endl;
+            }
+        }
+
+
+        if (command[0] == "update" && command[1] == "pinfo") {
+            if (user["type"] == "c") {
+                cout << "Fill the information, you want to update. Leave Blank to leave it as it was.\nYou can't change username.\n" << endl;
+
+                Customer c;
+
+                if (c.updateUserDetails(user["username"])) {
+                    cout << user["username"] << " you details are updated successfully." << endl;
+                }
+                else {
+                    cout << "Update failed." << endl;
+                }
+            }
+            else {
+                cout << "Please login first." << endl;
+            }
+        }
+
 
     } while (command[0] != "exit");
 
