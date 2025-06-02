@@ -12,6 +12,6 @@ std::string generateRandomNumByTime();
 bool isValidEmail(const std::string& email);
 bool isValidNZMobileNumber(const std::string& number);
 bool isValidPassword(const std::string& password);
-bool isValidGender(const string& gender);
+bool isValidGender(const std::string& gender);
 
 #endif

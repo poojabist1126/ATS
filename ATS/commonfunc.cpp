@@ -28,6 +28,9 @@ vector<string> getCommand() {
     string command;
     getline(cin, command);
 
+    if (command.empty())
+        return { "" };
+
     istringstream iss(command);
     string word;
     vector<string> words;

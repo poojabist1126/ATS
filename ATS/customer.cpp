@@ -73,7 +73,7 @@ vector<string> Customer::appendDetails() {
 
 bool Customer::isUserExist(string username) {
     if (username.empty() || username == "")
-        return true;
+        return false;
 
     vector<vector<string>> details = readCsvFile(filePath);
     int i = 0;
@@ -100,6 +100,8 @@ vector<string> Customer::getDetails(string username) {
             }
         }
     }
+
+    return {};
 }
 
 bool Customer::updateUserDetails(string username) {

@@ -127,6 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="admin.hpp" />
+    <ClCompile Include="admin.cpp" />
     <ClCompile Include="ATS.cpp" />
     <ClCompile Include="commonfunc.cpp" />
     <ClCompile Include="customer.cpp" />
@@ -140,11 +142,9 @@
     <ClInclude Include="customer.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="admin_credentials.csv" />
-    <None Include="customer_credentials.csv" />
+    <None Include="admin_details.csv" />
     <None Include="customer_details.csv" />
     <None Include="employee_details.csv" />
-    <None Include="product_details.csv" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="help.txt" />

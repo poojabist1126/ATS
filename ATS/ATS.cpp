@@ -9,12 +9,98 @@
 #include "modcsv.hpp"
 #include "commonfunc.hpp"
 #include "customer.hpp"
+#include "employee.hpp"
+#include "admin.hpp"
 
 using namespace std;
+
+void userAuthentication(map<string, string>& user, vector<string> command) {
+    if (command[0] == "signup") {
+        if (user["username"] == "") {
+            cout << "Please enter the details.\n" << endl;
+
+            Customer c;
+
+            vector<string> details = c.appendDetails();
+
+            user["username"] = details[1];
+            user["type"] = "c";
+
+            cout << "Congratulations, " + details[0] + " you have successfully created account as " + user["username"] + "." << endl;
+        }
+        else {
+            cout << "You have to logout first." << endl;
+        }
+    }
+    else if (command[0] == "login") {
+        if (user["username"] == "") {
+            if (command.size() == 1) {
+                Customer c;
+                string username, password;
+                vector<string> details;
+
+                cout << "Username: ";
+                getline(cin, username);
+
+                if (c.isUserExist(username)) {
+                    cout << "Password: ";
+                    getline(cin, password);
+
+                    details = c.getDetails(username);
+                    if (details[3] == trim(password)) {
+                        user["username"] = trim(username);
+                        user["type"] = "c";
+
+                        cout << "Welcome " << details[0] << ", login successful." << endl;
+                    }
+                    else {
+                        cout << "Login failed. Password doesn't matched." << endl;
+                    }
+                }
+                else {
+                    cout << "User doesn't exists, please enter valid username. If you don't have account please signup.\nTo signup, please type 'signup'. Thank You" << endl;
+                }
+            }
+            else if (command[1] == "admin") {
+                Admin a;
+                string username, password;
+                vector<string> details;
+
+                cout << "Username: ";
+                getline(cin, username);
+
+                if (a.isUserExist(username)) {
+                    cout << "Password: ";
+                    getline(cin, password);
+
+                    details = a.getDetails(username);
+                    if (details[1] == trim(password)) {
+                        user["username"] = trim(username);
+                        user["type"] = "a";
+
+                        cout << "Welcome " << details[0] << ", login successful." << endl;
+                    }
+                    else {
+                        cout << "Login failed. Password doesn't matched." << endl;
+                    }
+                }
+                else {
+                    cout << "User doesn't exists, please enter valid username. If you don't have account please signup.\nTo signup, please type 'signup'. Thank You" << endl;
+                }
+            }
+        }
+        else {
+            cout << "You have to logout first." << endl;
+        }
+
+    }
+}
 
 int main() {
     vector<string> command;
     map<string, string> user = { {"username", ""}, {"type", ""} };
+    Customer c;
+    Admin a;
 
     cout << "Welcome to Aotearoa Treasures’ inventory management system\n" << endl;
 
@@ -28,117 +114,36 @@ int main() {
         cout << ">>> ";
         command = getCommand();
 
-        if (command[0] == "signup") {
-            cout << "Please enter the details.\n" << endl;
+        userAuthentication(user, command);
 
-            Customer c;
+        if (command[0] == "logout") {
+            user["username"] = "";
+            user["type"] = "";
 
-            vector<string> details = c.appendDetails();
-
-            user["username"] = details[1];
-            user["type"] = "c";
-
-            cout << "Congratulations, " + details[0] + " you have successfully created account as " + user["username"] + "." << endl;
-        }
-        else if (command[0] == "login") {
-            Customer c;
-            string username, password;
-            vector<string> details;
-
-            cout << "Username: ";
-            getline(cin, username);
-
-            if (c.isUserExist(username)) {
-                cout << "Password: ";
-                getline(cin, password);
-
-                details = c.getDetails(username);
-                if (details[3] == trim(password)) {
-                    user["username"] = trim(username);
-                    user["type"] = "c";
-
-                    cout << "Welcome " << details[0] << ", login successful." << endl;
-                }
-                else {
-                    cout << "Login failed. Password doesn't matched." << endl;
-                }
-            }
-            else {
-                cout << "User doesn't exists, please enter valid username. If you don't have account please signup.\nTo signup, please type 'signup'. Thank You" << endl;
-            }
+            cout << "Logout successfull." << endl;
         }
 
+        //if (command[0] == "update" && command[1] == "pinfo") {
+        //    if (user["type"] == "c") {
+        //        cout << "Fill the information, you want to update. Leave Blank to leave it as it was.\nYou can't change username.\n" << endl;
 
-        if (command[0] == "update" && command[1] == "pinfo") {
-            if (user["type"] == "c") {
-                cout << "Fill the information, you want to update. Leave Blank to leave it as it was.\nYou can't change username.\n" << endl;
+        //        Customer c;
 
-                Customer c;
-
-                if (c.updateUserDetails(user["username"])) {
-                    cout << user["username"] << " you details are updated successfully." << endl;
-                }
-                else {
-                    cout << "Update failed." << endl;
-                }
-            }
-            else {
-                cout << "Please login first." << endl;
-            }
-        }
+        //        if (c.updateUserDetails(user["username"])) {
+        //            cout << user["username"] << " you details are updated successfully." << endl;
+        //        }
+        //        else {
+        //            cout << "Update failed." << endl;
+        //        }
+        //    }
+        //    else {
+        //        cout << "Please login first." << endl;
+        //    }
+        //}
 
 
     } while (command[0] != "exit");
 
-    
-    //if (command[0] == "login") {
-    //    if (command.size() > 1)
-    //        userStatus = userLogin(command);
-    //    else
-    //        cout << "Please enter a valid command. To check valid commands, type 'help'." << endl;
-    //}
-    //else if (command[0] == "signup") {
-    //    userStatus = userSignup();
-    //}
-    //else if (command[0] == "update") {
-    //    if(command.size() > 1)
-    //        updateDetails(command);
-    //    else
-    //        cout << "Please enter a valid command. To check valid commands, type 'help'." << endl;
-    //}
-    //else if (command[0] == "add") {
-    //    if (command.size() > 1)
-    //        addDetails(command);
-    //    else
-    //        cout << "Please enter a valid command. To check valid commands, type 'help'." << endl;
-    //}
-    //else if (command[0] == "delete") {
-    //    if (command.size() > 1)
-    //        deleteDetails(command);
-    //    else
-    //        cout << "Please enter a valid command. To check valid commands, type 'help'." << endl;
-    //}
-    //else if (command[0] == "show") {
-    //    if (command.size() > 1 && (command[1] == "product" || command[1] == "employee"))
-    //        displayTable(readCsvFile(command[1] + "_details.csv"));
-    //    else
-    //        cout << "Please enter a valid command. To check valid commands, type 'help'." << endl;
-    //}
-    //else if (command[0] == "help") {
-    //    ifstream inputFile("help.txt");
-    //    string line;
-
-    //    if (inputFile.is_open()) {
-    //        while (getline(inputFile, line)) {
-    //            cout << line << endl;
-    //        }
-    //        inputFile.close();
-    //    }
-    //    else {
-    //        cerr << "Unable to open file" << endl;
-    //    }
-
-    //}
 
     return 0;
 }
