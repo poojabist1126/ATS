@@ -132,6 +132,8 @@ vector<string> Employee::getDetails(string employeeId) {
             }
         }
     }
+
+    return {};
 }
 
 bool Employee::updateUserDetails(string employeeId) {
