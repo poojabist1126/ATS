@@ -96,12 +96,16 @@ void userAuthentication(map<string, string>& user, vector<string> command) {
     }
 }
 
-bool isUserLoggedIn(map<string, string> user) {
+bool checkUser(map<string, string> user, string commandOf = "") {
     if (user["username"] == "" && user["type"] == "") {
         cout << "You are not logged in." << endl;
         cout << "To log in, type: 'login'." << endl;
         cout << "To create an account, type: 'signup'." << endl;
         cout << "To view available commands, type: 'help'." << endl;
+        return false;
+    }
+    else if (user["username"] != "" && user["type"] == "c" && commandOf == "a") {
+        cout << "Must be loggedIn as admin." << endl;
         return false;
     }
     return true;
@@ -127,11 +131,15 @@ int main() {
 
         userAuthentication(user, command);
         
-        if (command[0] == "logout" && isUserLoggedIn(user)) {
+        if (command[0] == "logout" && checkUser(user, "")) {
             user["username"] = "";
             user["type"] = "";
 
             cout << "Logout successful." << endl;
+        }
+
+        if (command[0] == "admin" && checkUser(user, "a")) {
+            cout << "Successful." << endl;
         }
 
         //if (command[0] == "update" && command[1] == "pinfo") {
