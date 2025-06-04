@@ -127,8 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="admin.hpp" />
-    <ClCompile Include="admin.cpp" />
+    <ClCompile Include="admin_.cpp" />
     <ClCompile Include="ATS.cpp" />
     <ClCompile Include="commonfunc.cpp" />
     <ClCompile Include="customer.cpp" />
@@ -136,6 +135,7 @@
     <ClCompile Include="modcsv.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="admin_.hpp" />
     <ClInclude Include="commonfunc.hpp" />
     <ClInclude Include="employee.hpp" />
     <ClInclude Include="modcsv.hpp" />

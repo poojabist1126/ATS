@@ -10,7 +10,7 @@
 #include "commonfunc.hpp"
 #include "customer.hpp"
 #include "employee.hpp"
-#include "admin.hpp"
+#include "admin_.hpp"
 
 using namespace std;
 
