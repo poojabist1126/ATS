@@ -96,6 +96,17 @@ void userAuthentication(map<string, string>& user, vector<string> command) {
     }
 }
 
+bool isUserLoggedIn(map<string, string> user) {
+    if (user["username"] == "" && user["type"] == "") {
+        cout << "You are not logged in." << endl;
+        cout << "To log in, type: 'login'." << endl;
+        cout << "To create an account, type: 'signup'." << endl;
+        cout << "To view available commands, type: 'help'." << endl;
+        return false;
+    }
+    return true;
+}
+
 int main() {
     vector<string> command;
     map<string, string> user = { {"username", ""}, {"type", ""} };
@@ -115,12 +126,12 @@ int main() {
         command = getCommand();
 
         userAuthentication(user, command);
-
-        if (command[0] == "logout") {
+        
+        if (command[0] == "logout" && isUserLoggedIn(user)) {
             user["username"] = "";
             user["type"] = "";
 
-            cout << "Logout successfull." << endl;
+            cout << "Logout successful." << endl;
         }
 
         //if (command[0] == "update" && command[1] == "pinfo") {
