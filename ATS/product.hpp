@@ -19,7 +19,7 @@ public:
     bool isProductExist(std::string productId);
     std::vector<std::string> getDetails(std::string productId);
     bool updateProductDetails(std::string productId);
-    std::vector<std::vector<std::string>> getProductsByfilter(std::string filter);
+    std::vector<std::vector<std::string>> getProductsByCategory(std::string category);
 };
 
 #endif

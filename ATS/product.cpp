@@ -155,3 +155,15 @@ bool Product::updateProductDetails(string productId) {
     updateDetails(filePath, 0, trim(productId), { { "", trim(name), trim(category), trim(price), trim(quantity)} });
     return true;
 }
+
+vector<vector<string>> Product::getProductsByCategory(string category) {
+    vector<vector<string>> filtered, output = readCsvFile(filePath);
+
+    for (const auto& row : output) {
+        if (row.size() > 2 && row[2] == category) { 
+            filtered.push_back(row);
+        }
+    }
+
+    return filtered;
+}
