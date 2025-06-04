@@ -133,6 +133,7 @@
     <ClCompile Include="customer.cpp" />
     <ClCompile Include="employee.cpp" />
     <ClCompile Include="modcsv.cpp" />
+    <ClCompile Include="product.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="admin_.hpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="employee.hpp" />
     <ClInclude Include="modcsv.hpp" />
     <ClInclude Include="customer.hpp" />
+    <ClInclude Include="product.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="admin_details.csv" />
