@@ -11,6 +11,7 @@
 #include "customer.hpp"
 #include "employee.hpp"
 #include "admin_.hpp"
+#include "product.hpp"
 
 using namespace std;
 
@@ -141,25 +142,6 @@ int main() {
         if (command[0] == "admin" && checkUser(user, "a")) {
             cout << "Successful." << endl;
         }
-
-        //if (command[0] == "update" && command[1] == "pinfo") {
-        //    if (user["type"] == "c") {
-        //        cout << "Fill the information, you want to update. Leave Blank to leave it as it was.\nYou can't change username.\n" << endl;
-
-        //        Customer c;
-
-        //        if (c.updateUserDetails(user["username"])) {
-        //            cout << user["username"] << " you details are updated successfully." << endl;
-        //        }
-        //        else {
-        //            cout << "Update failed." << endl;
-        //        }
-        //    }
-        //    else {
-        //        cout << "Please login first." << endl;
-        //    }
-        //}
-
 
     } while (command[0] != "exit");
 
