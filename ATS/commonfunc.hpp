@@ -13,5 +13,7 @@ bool isValidEmail(const std::string& email);
 bool isValidNZMobileNumber(const std::string& number);
 bool isValidPassword(const std::string& password);
 bool isValidGender(const std::string& gender);
+bool isNumber(const std::string& str);
+bool isWholeNumber(const std::string& str);
 
 #endif

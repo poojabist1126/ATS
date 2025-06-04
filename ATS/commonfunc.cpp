@@ -126,8 +126,8 @@ bool isValidEmail(const string& email) {
 }
 
 bool isValidNZMobileNumber(const string& number) {
-    regex localFormat("^02[0-9]{7,8}$");       
-    regex internationalFormat("^\\+642[0-9]{7,8}$"); 
+    regex localFormat("^02[0-9]{7,8}$");
+    regex internationalFormat("^\\+642[0-9]{7,8}$");
 
     return regex_match(number, localFormat) || regex_match(number, internationalFormat);
 }
@@ -150,4 +150,27 @@ bool isValidPassword(const string& password) {
 
 bool isValidGender(const string& gender) {
     return ("m" == gender || "f" == gender) && !gender.empty();
+}
+
+bool isNumber(const string& str) {
+    if (str.empty() || std::all_of(str.begin(), str.end(), ::isspace)) {
+        return false;
+    }
+
+    istringstream iss(str);
+    double d;
+    char c;
+    return (iss >> d) && !(iss >> c);
+}
+
+bool isWholeNumber(const string& str) {
+    if (str.empty()) return false;
+
+    if (str[0] == '-') return false;
+
+    size_t start = (str[0] == '+') ? 1 : 0;
+
+    if (start == str.length()) return false;
+
+    return all_of(str.begin() + start, str.end(), ::isdigit);
 }
