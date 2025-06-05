@@ -23,6 +23,7 @@ public:
     std::vector<std::vector<std::string>> getProductsByCategory(std::string category);
     std::vector<std::vector<std::string>> getProductsByStoreLocation(std::string storeLocation);
     std::vector<std::vector<std::string>> getProducts();
+    void clear();
 };
 
 #endif

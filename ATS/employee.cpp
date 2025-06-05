@@ -202,3 +202,28 @@ bool Employee::updateUserDetails(string employeeId) {
 vector<vector<string>> Employee::getUsers() {
     return readCsvFile(filePath);
 }
+
+
+vector<vector<string>> Employee::getEmployeesByPosition(string position) {
+    vector<vector<string>> filtered, output = readCsvFile(filePath);
+
+    for (const auto& row : output) {
+        if (row.size() > 2 && (row[2] == position || filtered.size() == 0)) {
+            filtered.push_back(row);
+        }
+    }
+
+    return filtered;
+}
+
+void Employee::clear() {
+    employeeId.clear();
+    name.clear();
+    position.clear();
+    email.clear();
+    contactNum.clear();
+    gender.clear();
+    address.clear();
+    joinedDate.clear();
+    res.clear();
+}

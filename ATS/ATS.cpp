@@ -145,9 +145,11 @@ int main() {
             if (command[0] == "add") {
                 if (command[1] == "product") {
                     p.appendDetails();
+                    p.clear();
                 }
                 else if (command[1] == "employee") {
                     e.appendDetails();
+                    e.clear();
                 }
             }
             else if (command[0] == "update") {
@@ -158,6 +160,7 @@ int main() {
                     productId = trim(productId);
 
                     p.updateProductDetails(productId);
+                    p.clear();
                 }
                 else if (command[1] == "employee") {
                     string employeeId;
@@ -166,6 +169,7 @@ int main() {
                     employeeId = trim(employeeId);
 
                     e.updateUserDetails(employeeId);
+                    e.clear();
                 }
             }
             else if (command[0] == "show") {
@@ -174,7 +178,7 @@ int main() {
                     if (command.size() == 2) {
                         products = p.getProducts();
                         printTable(products, -1);
-                    } else {
+                    } else if (command.size() == 4) {
                         if (command[2] == "category") {
                             products = p.getProductsByCategory(command[3]);
                             printTable(products);
@@ -208,8 +212,17 @@ int main() {
                     }
                 }
                 else if (command[1] == "employee") {
-                    vector<vector<string>> employees = e.getUsers();
-                    printTable(employees);
+                    vector<vector<string>> employees;
+                    if (command.size() == 2) {
+                        employees = e.getUsers();
+                        printTable(employees);
+                    }
+                    else if(command.size() == 4) {
+                        if (command[2] == "position") {
+                            employees = e.getEmployeesByPosition(command[3]);
+                            printTable(employees);
+                        }
+                    }
                 }
             }
         }

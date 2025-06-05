@@ -236,3 +236,13 @@ vector<vector<string>> Product::getProductsByStoreLocation(string storeLocation)
 vector<vector<string>> Product::getProducts() {
     return readCsvFile(filePath);
 }
+
+void Product::clear() {
+    productId.clear();
+    name.clear();
+    category.clear();
+    price.clear();
+    quantity.clear();
+    storeLocation.clear();
+    res.clear();
+}
