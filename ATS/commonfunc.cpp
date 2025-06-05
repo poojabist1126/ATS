@@ -176,23 +176,41 @@ bool isWholeNumber(const string& str) {
 }
 
 void printTable(const vector<vector<string>>& table) {
+    if (table.empty()) return;
+
     size_t numCols = 0;
-    for (const auto& row : table) {
+    for (const auto& row : table)
         numCols = max(numCols, row.size());
-    }
 
     vector<size_t> colWidths(numCols, 0);
-    for (const auto& row : table) {
-        for (size_t i = 0; i < row.size(); ++i) {
+    for (const auto& row : table)
+        for (size_t i = 0; i < row.size(); ++i)
             colWidths[i] = max(colWidths[i], row[i].length());
-        }
-    }
 
-    for (const auto& row : table) {
+    auto printBorder = [&]() {
+        cout << "+";
+        for (auto width : colWidths)
+            cout << string(width + 2, '-') << "+";
+        cout << '\n';
+        };
+
+    auto printRow = [&](const vector<string>& row) {
+        cout << "|";
         for (size_t i = 0; i < numCols; ++i) {
             string cell = (i < row.size()) ? row[i] : "";
-            cout << left << setw(colWidths[i] + 2) << cell;  
+            cout << " " << left << setw(colWidths[i]) << cell << " |";
         }
         cout << '\n';
+        };
+
+    printBorder();
+    bool isHeader = true;
+    for (const auto& row : table) {
+        printRow(row);
+        if (isHeader) {
+            printBorder();
+            isHeader = false;
+        }
     }
+    printBorder();
 }

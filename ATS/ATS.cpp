@@ -173,6 +173,10 @@ int main() {
                     vector<vector<string>> products = p.getProducts();
                     printTable(products);
                 }
+                else if (command[1] == "employee") {
+                    vector<vector<string>> employees = e.getUsers();
+                    printTable(employees);
+                }
             }
         }
     } while (command[0] != "exit");
