@@ -141,7 +141,7 @@ int main() {
             cout << "Logout successful." << endl;
         }
 
-        if (command.size() == 2 && checkUser(user, "a")) {
+        if (checkUser(user, "a")) {
             if (command[0] == "add") {
                 if (command[1] == "product") {
                     p.appendDetails();
@@ -170,8 +170,42 @@ int main() {
             }
             else if (command[0] == "show") {
                 if (command[1] == "product") {
-                    vector<vector<string>> products = p.getProducts();
-                    printTable(products);
+                    vector<vector<string>> products;
+                    if (command.size() == 2) {
+                        products = p.getProducts();
+                        printTable(products, -1);
+                    } else {
+                        if (command[2] == "category") {
+                            products = p.getProductsByCategory(command[3]);
+                            printTable(products);
+                        }
+                        else if (command[2] == "storeLocation") {
+                            products = p.getProductsByStoreLocation(command[3]);
+                            printTable(products);
+                        }
+                        else if (command[2] == "asc") {
+                            if (command[3] == "price") {
+                                products = p.getProducts();
+                                printTable(products, 3, true);
+                            }
+                            else if (command[3] == "quantity") {
+                                products = p.getProducts();
+                                printTable(products, 4, true);
+
+                            }
+                        }
+                        else if (command[2] == "desc") {
+                            if (command[3] == "price") {
+                                products = p.getProducts();
+                                printTable(products, 3, false);
+                            }
+                            else if (command[3] == "quantity") {
+                                products = p.getProducts();
+                                printTable(products, 4, false);
+
+                            }
+                        }
+                    }
                 }
                 else if (command[1] == "employee") {
                     vector<vector<string>> employees = e.getUsers();

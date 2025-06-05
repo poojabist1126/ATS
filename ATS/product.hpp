@@ -21,6 +21,7 @@ public:
     std::vector<std::string> getDetails(std::string productId);
     bool updateProductDetails(std::string productId);
     std::vector<std::vector<std::string>> getProductsByCategory(std::string category);
+    std::vector<std::vector<std::string>> getProductsByStoreLocation(std::string storeLocation);
     std::vector<std::vector<std::string>> getProducts();
 };
 

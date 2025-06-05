@@ -15,6 +15,6 @@ bool isValidPassword(const std::string& password);
 bool isValidGender(const std::string& gender);
 bool isNumber(const std::string& str);
 bool isWholeNumber(const std::string& str);
-void printTable(const std::vector<std::vector<std::string>>& table);
+void printTable(const std::vector<std::vector<std::string>>& table, int sortByColumn = -1, bool ascending = true);
 
 #endif
