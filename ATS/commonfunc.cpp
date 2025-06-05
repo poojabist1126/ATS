@@ -7,6 +7,7 @@
 #include <vector>
 #include <regex>
 #include <random>
+#include <algorithm>
 
 using namespace std;
 
@@ -175,15 +176,25 @@ bool isWholeNumber(const string& str) {
     return all_of(str.begin() + start, str.end(), ::isdigit);
 }
 
-void printTable(const vector<vector<string>>& table) {
+void printTable(const vector<vector<string>>& table, int sortByColumn, bool ascending) {
     if (table.empty()) return;
 
     size_t numCols = 0;
     for (const auto& row : table)
         numCols = max(numCols, row.size());
 
+    vector<vector<string>> sortedTable = table;
+
+    if (sortByColumn >= 0 && sortByColumn < numCols) {
+        sort(sortedTable.begin() + 1, sortedTable.end(), [&](const vector<string>& a, const vector<string>& b) {
+            string valA = (sortByColumn < a.size()) ? a[sortByColumn] : "";
+            string valB = (sortByColumn < b.size()) ? b[sortByColumn] : "";
+            return ascending ? (valA < valB) : (valA > valB);
+            });
+    }
+
     vector<size_t> colWidths(numCols, 0);
-    for (const auto& row : table)
+    for (const auto& row : sortedTable)
         for (size_t i = 0; i < row.size(); ++i)
             colWidths[i] = max(colWidths[i], row[i].length());
 
@@ -205,7 +216,7 @@ void printTable(const vector<vector<string>>& table) {
 
     printBorder();
     bool isHeader = true;
-    for (const auto& row : table) {
+    for (const auto& row : sortedTable) {
         printRow(row);
         if (isHeader) {
             printBorder();

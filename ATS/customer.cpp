@@ -144,3 +144,11 @@ bool Customer::updateUserDetails(string username) {
     return true;
 }
 
+void Customer::clear() {
+    name.clear();
+    username.clear();
+    email.clear();
+    password.clear();
+    joinedDate.clear();
+    res.clear();
+}

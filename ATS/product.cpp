@@ -213,7 +213,19 @@ vector<vector<string>> Product::getProductsByCategory(string category) {
     vector<vector<string>> filtered, output = readCsvFile(filePath);
 
     for (const auto& row : output) {
-        if (row.size() > 2 && row[2] == category) { 
+        if (row.size() > 2 && (row[2] == category || filtered.size() == 0)) {
+            filtered.push_back(row);
+        }
+    }
+
+    return filtered;
+}
+
+vector<vector<string>> Product::getProductsByStoreLocation(string storeLocation) {
+    vector<vector<string>> filtered, output = readCsvFile(filePath);
+
+    for (const auto& row : output) {
+        if (row.size() > 5 && (row[5] == storeLocation || filtered.size() == 0)) {
             filtered.push_back(row);
         }
     }
@@ -223,4 +235,14 @@ vector<vector<string>> Product::getProductsByCategory(string category) {
 
 vector<vector<string>> Product::getProducts() {
     return readCsvFile(filePath);
+}
+
+void Product::clear() {
+    productId.clear();
+    name.clear();
+    category.clear();
+    price.clear();
+    quantity.clear();
+    storeLocation.clear();
+    res.clear();
 }

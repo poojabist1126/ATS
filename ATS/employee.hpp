@@ -23,6 +23,8 @@ public:
     std::vector<std::string> getDetails(std::string username);
     bool updateUserDetails(std::string username);
     std::vector<std::vector<std::string>> getUsers();
+    std::vector<std::vector<std::string>> getEmployeesByPosition(std::string position);
+    void clear();
 };
 
 #endif
