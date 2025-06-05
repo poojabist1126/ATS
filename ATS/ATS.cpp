@@ -117,8 +117,10 @@ int main() {
     map<string, string> user = { {"username", ""}, {"type", ""} };
     Customer c;
     Admin a;
+    Product p;
+    Employee e;
 
-    cout << "Welcome to Aotearoa Treasures’ inventory management system\n" << endl;
+    cout << "Welcome to Aotearoa Treasures’s inventory management system\n" << endl;
 
     cout << "Please login to use this software. If you don't have account, please create one." << endl;
     cout << "Type 'login' to login." << endl;
@@ -139,10 +141,40 @@ int main() {
             cout << "Logout successful." << endl;
         }
 
-        if (command[0] == "admin" && checkUser(user, "a")) {
-            cout << "Successful." << endl;
-        }
+        if (command.size() == 2 && checkUser(user, "a")) {
+            if (command[0] == "add") {
+                if (command[1] == "product") {
+                    p.appendDetails();
+                }
+                else if (command[1] == "employee") {
+                    e.appendDetails();
+                }
+            }
+            else if (command[0] == "update") {
+                if (command[1] == "product") {
+                    string productId;
+                    cout << "Enter product Id: ";
+                    getline(cin, productId);
+                    productId = trim(productId);
 
+                    p.updateProductDetails(productId);
+                }
+                else if (command[1] == "employee") {
+                    string employeeId;
+                    cout << "Enter employee Id: ";
+                    getline(cin, employeeId);
+                    employeeId = trim(employeeId);
+
+                    e.updateUserDetails(employeeId);
+                }
+            }
+            else if (command[0] == "show") {
+                if (command[1] == "product") {
+                    vector<vector<string>> products = p.getProducts();
+                    printTable(products);
+                }
+            }
+        }
     } while (command[0] != "exit");
 
 

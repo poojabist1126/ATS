@@ -30,11 +30,11 @@
     <ClCompile Include="employee.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="admin.cpp">
+    <ClCompile Include="admin_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="admin.hpp">
-      <Filter>Header Files</Filter>
+    <ClCompile Include="product.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -50,11 +50,18 @@
     <ClInclude Include="employee.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="admin_.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="product.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="admin_details.csv" />
     <None Include="employee_details.csv" />
     <None Include="customer_details.csv" />
+    <None Include="product_details.csv" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="help.txt" />

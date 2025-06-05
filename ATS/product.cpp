@@ -49,7 +49,7 @@ vector<string> Product::askDetails() {
     }
 
     while (!isWholeNumber(quantity) && res != "q") {
-        cout << "Price: ";
+        cout << "Quantity: ";
         getline(cin, quantity);
         quantity = trim(quantity);
 
@@ -62,10 +62,35 @@ vector<string> Product::askDetails() {
             return { };
     }
 
+    while (!(storeLocation == "1" || storeLocation == "2" || storeLocation == "3") && res != "q") {
+        cout << "Store Location (1 for Wellington, 2 for Christchurch, 3 for Auckland): ";
+        getline(cin, storeLocation);
+        storeLocation = trim(storeLocation);
+
+        if (!(storeLocation == "1" || storeLocation == "2" || storeLocation == "3")) {
+            cout << "Store Location is not valid. Press enter to type again or type 'q' to quit." << endl;
+            getline(cin, res);
+        }
+
+        if (res == "q")
+            return { };
+    }
+
     productId = "P" + generateRandomNumByTime();
 
-    cout << "Thanks for the details.\n" << endl;
-    return { productId, name, category, price, quantity };
+    cout << "Details added successfully." << endl;
+
+    if (storeLocation == "1") {
+        storeLocation = "Wellington";
+    }
+    else if (storeLocation == "2") {
+        storeLocation = "Christchurch";
+    }
+    else if (storeLocation == "3") {
+        storeLocation = "Auckland";
+    }
+
+    return { productId, name, category, price, quantity, storeLocation };
 }
 
 vector<string> Product::appendDetails() {
@@ -100,7 +125,7 @@ vector<string> Product::getDetails(string productId) {
 
         for (i = 0; i < details.size(); i++) {
             if (trim(productId) == details[i][0]) {
-                return { details[i][0], details[i][1], details[i][2], details[i][3], details[i][4] };
+                return { details[i][0], details[i][1], details[i][2], details[i][3], details[i][4], details[i][5] };
                 break;
             }
         }
@@ -151,6 +176,34 @@ bool Product::updateProductDetails(string productId) {
             return { };
     }
 
+    while (!(storeLocation == "1" || storeLocation == "2" || storeLocation == "3") && res != "q") {
+        cout << "Store Location (1 for Wellington, 2 for Christchurch, 3 for Auckland): ";
+        getline(cin, storeLocation);
+
+        if (storeLocation.empty())
+            break;
+
+        if (!(storeLocation == "1" || storeLocation == "2" || storeLocation == "3")) {
+            cout << "Store Location is not valid. Press enter to type again or type 'q' to quit." << endl;
+            getline(cin, res);
+        }
+
+        if (res == "q")
+            return { };
+    }
+
+    storeLocation = trim(storeLocation);
+
+    if (storeLocation == "1") {
+        storeLocation = "Wellington";
+    }
+    else if (storeLocation == "2") {
+        storeLocation = "Christchurch";
+    }
+    else if (storeLocation == "3") {
+        storeLocation = "Auckland";
+    }
+
 
     updateDetails(filePath, 0, trim(productId), { { "", trim(name), trim(category), trim(price), trim(quantity)} });
     return true;
@@ -166,4 +219,8 @@ vector<vector<string>> Product::getProductsByCategory(string category) {
     }
 
     return filtered;
+}
+
+vector<vector<string>> Product::getProducts() {
+    return readCsvFile(filePath);
 }
