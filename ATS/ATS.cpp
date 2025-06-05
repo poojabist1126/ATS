@@ -143,17 +143,17 @@ int main() {
 
         if (checkUser(user, "a")) {
             if (command[0] == "add") {
-                if (command[1] == "product") {
+                if (command[1] == "product" && checkUser(user, "a")) {
                     p.appendDetails();
                     p.clear();
                 }
-                else if (command[1] == "employee") {
+                else if (command[1] == "employee" && checkUser(user, "a")) {
                     e.appendDetails();
                     e.clear();
                 }
             }
             else if (command[0] == "update") {
-                if (command[1] == "product") {
+                if (command[1] == "product" && checkUser(user, "a")) {
                     string productId;
                     cout << "Enter product Id: ";
                     getline(cin, productId);
@@ -162,7 +162,7 @@ int main() {
                     p.updateProductDetails(productId);
                     p.clear();
                 }
-                else if (command[1] == "employee") {
+                else if (command[1] == "employee" && checkUser(user, "a")) {
                     string employeeId;
                     cout << "Enter employee Id: ";
                     getline(cin, employeeId);
@@ -175,35 +175,35 @@ int main() {
             else if (command[0] == "show") {
                 if (command[1] == "product") {
                     vector<vector<string>> products;
-                    if (command.size() == 2) {
+                    if (command.size() == 2 && checkUser(user, "a")) {
                         products = p.getProducts();
                         printTable(products, -1);
                     } else if (command.size() == 4) {
-                        if (command[2] == "category") {
+                        if (command[2] == "category" && checkUser(user, "a")) {
                             products = p.getProductsByCategory(command[3]);
                             printTable(products);
                         }
-                        else if (command[2] == "storeLocation") {
+                        else if (command[2] == "storeLocation" && checkUser(user, "a")) {
                             products = p.getProductsByStoreLocation(command[3]);
                             printTable(products);
                         }
                         else if (command[2] == "asc") {
-                            if (command[3] == "price") {
+                            if (command[3] == "price" && checkUser(user, "a")) {
                                 products = p.getProducts();
                                 printTable(products, 3, true);
                             }
-                            else if (command[3] == "quantity") {
+                            else if (command[3] == "quantity" && checkUser(user, "a")) {
                                 products = p.getProducts();
                                 printTable(products, 4, true);
 
                             }
                         }
                         else if (command[2] == "desc") {
-                            if (command[3] == "price") {
+                            if (command[3] == "price" && checkUser(user, "a")) {
                                 products = p.getProducts();
                                 printTable(products, 3, false);
                             }
-                            else if (command[3] == "quantity") {
+                            else if (command[3] == "quantity" && checkUser(user, "a")) {
                                 products = p.getProducts();
                                 printTable(products, 4, false);
 
@@ -213,12 +213,12 @@ int main() {
                 }
                 else if (command[1] == "employee") {
                     vector<vector<string>> employees;
-                    if (command.size() == 2) {
+                    if (command.size() == 2 && checkUser(user, "a")) {
                         employees = e.getUsers();
                         printTable(employees);
                     }
                     else if(command.size() == 4) {
-                        if (command[2] == "position") {
+                        if (command[2] == "position" && checkUser(user, "a")) {
                             employees = e.getEmployeesByPosition(command[3]);
                             printTable(employees);
                         }
