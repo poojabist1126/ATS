@@ -11,6 +11,7 @@ private:
     std::string category;
     std::string price;
     std::string quantity;
+    std::string storeLocation;
     std::string res;
     std::string filePath = "product_details.csv";
 public:
@@ -20,6 +21,7 @@ public:
     std::vector<std::string> getDetails(std::string productId);
     bool updateProductDetails(std::string productId);
     std::vector<std::vector<std::string>> getProductsByCategory(std::string category);
+    std::vector<std::vector<std::string>> getProducts();
 };
 
 #endif

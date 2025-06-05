@@ -174,3 +174,25 @@ bool isWholeNumber(const string& str) {
 
     return all_of(str.begin() + start, str.end(), ::isdigit);
 }
+
+void printTable(const vector<vector<string>>& table) {
+    size_t numCols = 0;
+    for (const auto& row : table) {
+        numCols = max(numCols, row.size());
+    }
+
+    vector<size_t> colWidths(numCols, 0);
+    for (const auto& row : table) {
+        for (size_t i = 0; i < row.size(); ++i) {
+            colWidths[i] = max(colWidths[i], row[i].length());
+        }
+    }
+
+    for (const auto& row : table) {
+        for (size_t i = 0; i < numCols; ++i) {
+            string cell = (i < row.size()) ? row[i] : "";
+            cout << left << setw(colWidths[i] + 2) << cell;  
+        }
+        cout << '\n';
+    }
+}
