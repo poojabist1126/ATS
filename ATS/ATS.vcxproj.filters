@@ -62,6 +62,7 @@
     <None Include="employee_details.csv" />
     <None Include="customer_details.csv" />
     <None Include="product_details.csv" />
+    <None Include="order_details.csv" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="help.txt" />

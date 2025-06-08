@@ -73,7 +73,7 @@ vector<string> Customer::appendDetails() {
 
 bool Customer::isUserExist(string username) {
     if (username.empty() || username == "")
-        return false;
+        return true;
 
     vector<vector<string>> details = readCsvFile(filePath);
     int i = 0;
