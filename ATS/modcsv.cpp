@@ -81,7 +81,7 @@ void updateDetails(
         writeCsvFile(filename, data, false);
     }
     else {
-        std::cerr << "Error: No details found." << std::endl;
+        std::cout << "No details found." << std::endl;
     }
 }
 

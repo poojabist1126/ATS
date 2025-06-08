@@ -119,8 +119,10 @@ int main() {
     Admin a;
     Product p;
     Employee e;
+    string productCSV = "product_details.csv";
+    string orderCSV = "order_details.csv";
 
-    cout << "Welcome to Aotearoa Treasures’s inventory management system\n" << endl;
+    cout << "Welcome to Aotearoa Treasuresâ€™s inventory management system\n" << endl;
 
     cout << "Please login to use this software. If you don't have account, please create one." << endl;
     cout << "Type 'login' to login." << endl;
@@ -133,6 +135,7 @@ int main() {
         command = getCommand();
 
         userAuthentication(user, command);
+        
         if (command[0] == "logout" && checkUser(user, "")) {
             user["username"] = "";
             user["type"] = "";
@@ -144,11 +147,9 @@ int main() {
         if (command[0] == "add") {
             if (command[1] == "product" && checkUser(user, "a")) {
                 p.appendDetails();
-                p.clear();
             }
             else if (command[1] == "employee" && checkUser(user, "a")) {
                 e.appendDetails();
-                e.clear();
             }
         }
         else if (command[0] == "update") {
@@ -159,7 +160,6 @@ int main() {
                 productId = trim(productId);
 
                 p.updateProductDetails(productId);
-                p.clear();
             }
             else if (command[1] == "employee" && checkUser(user, "a")) {
                 string employeeId;
@@ -168,7 +168,6 @@ int main() {
                 employeeId = trim(employeeId);
 
                 e.updateUserDetails(employeeId);
-                e.clear();
             }
         }
         else if (command[0] == "show") {
@@ -177,8 +176,7 @@ int main() {
                 if (command.size() == 2) {
                     products = p.getProducts();
                     printTable(products, -1);
-                }
-                else if (command.size() == 4) {
+                } else if (command.size() == 4) {
                     if (command[2] == "category" && checkUser(user, "a")) {
                         products = p.getProductsByCategory(command[3]);
                         printTable(products);
@@ -217,14 +215,64 @@ int main() {
                     employees = e.getUsers();
                     printTable(employees);
                 }
-                else if (command.size() == 4) {
+                else if(command.size() == 4) {
                     if (command[2] == "position" && checkUser(user, "a")) {
                         employees = e.getEmployeesByPosition(command[3]);
                         printTable(employees);
                     }
                 }
+                
             }
         }
+        else if (command[0] == "buy" && checkUser(user, "c")) {
+            vector<string> product;
+            
+            if (command.size() == 2) {
+                string quantity;
+                string res;
+
+                while (!isWholeNumber(quantity) && res != "q") {
+                    cout << "Quantity: ";
+                    getline(cin, quantity);
+                    quantity = trim(quantity);
+
+                    if (!isWholeNumber(quantity)) {
+                        cout << "Quantity is not valid. Press enter to type again or type 'q' to quit." << endl;
+                        getline(cin, res);
+                    }
+
+                    if (res == "q")
+                        break;
+                }
+
+                product = p.getDetails(command[1]);
+
+                if (product.empty()) {
+                    cout << "Product ID doesn't exists." << endl;
+                    continue;
+                }
+
+                int itemLeft = stoi(product[4]) - stoi(quantity);
+
+                if (itemLeft < 0) {
+                    cout << "Not enough item. Item left: " << product[4] << "." << endl;
+                    continue;
+                }
+
+                updateDetails(productCSV, 0, command[1], { product[0], product[1], product[2], product[3], to_string(itemLeft), product[5] });
+
+                writeCsvFile(orderCSV, { {user["username"], product[0], product[1], quantity, product[5], getCurrentDateTime(), "COD", "not complete"} }, true);
+
+                cout << "Your order successfully registered." << endl;
+                cout << "Order will delivered within T+3 days." << endl;
+                cout << "Payment method Cash on Delivery" << endl;
+                cout << "Location: " << product[5] << endl;
+            }            
+        }
+
+        p.clear();
+        e.clear();
+        c.clear();
 
 
     } while (command[0] != "exit");
