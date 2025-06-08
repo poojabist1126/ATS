@@ -133,7 +133,6 @@ int main() {
         command = getCommand();
 
         userAuthentication(user, command);
-        
         if (command[0] == "logout" && checkUser(user, "")) {
             user["username"] = "";
             user["type"] = "";
@@ -141,91 +140,93 @@ int main() {
             cout << "Logout successful." << endl;
         }
 
-        if (checkUser(user, "a")) {
-            if (command[0] == "add") {
-                if (command[1] == "product" && checkUser(user, "a")) {
-                    p.appendDetails();
-                    p.clear();
-                }
-                else if (command[1] == "employee" && checkUser(user, "a")) {
-                    e.appendDetails();
-                    e.clear();
-                }
+
+        if (command[0] == "add") {
+            if (command[1] == "product" && checkUser(user, "a")) {
+                p.appendDetails();
+                p.clear();
             }
-            else if (command[0] == "update") {
-                if (command[1] == "product" && checkUser(user, "a")) {
-                    string productId;
-                    cout << "Enter product Id: ";
-                    getline(cin, productId);
-                    productId = trim(productId);
-
-                    p.updateProductDetails(productId);
-                    p.clear();
-                }
-                else if (command[1] == "employee" && checkUser(user, "a")) {
-                    string employeeId;
-                    cout << "Enter employee Id: ";
-                    getline(cin, employeeId);
-                    employeeId = trim(employeeId);
-
-                    e.updateUserDetails(employeeId);
-                    e.clear();
-                }
+            else if (command[1] == "employee" && checkUser(user, "a")) {
+                e.appendDetails();
+                e.clear();
             }
-            else if (command[0] == "show") {
-                if (command[1] == "product") {
-                    vector<vector<string>> products;
-                    if (command.size() == 2 && checkUser(user, "a")) {
-                        products = p.getProducts();
-                        printTable(products, -1);
-                    } else if (command.size() == 4) {
-                        if (command[2] == "category" && checkUser(user, "a")) {
-                            products = p.getProductsByCategory(command[3]);
-                            printTable(products);
-                        }
-                        else if (command[2] == "storeLocation" && checkUser(user, "a")) {
-                            products = p.getProductsByStoreLocation(command[3]);
-                            printTable(products);
-                        }
-                        else if (command[2] == "asc") {
-                            if (command[3] == "price" && checkUser(user, "a")) {
-                                products = p.getProducts();
-                                printTable(products, 3, true);
-                            }
-                            else if (command[3] == "quantity" && checkUser(user, "a")) {
-                                products = p.getProducts();
-                                printTable(products, 4, true);
+        }
+        else if (command[0] == "update") {
+            if (command[1] == "product" && checkUser(user, "a")) {
+                string productId;
+                cout << "Enter product Id: ";
+                getline(cin, productId);
+                productId = trim(productId);
 
-                            }
-                        }
-                        else if (command[2] == "desc") {
-                            if (command[3] == "price" && checkUser(user, "a")) {
-                                products = p.getProducts();
-                                printTable(products, 3, false);
-                            }
-                            else if (command[3] == "quantity" && checkUser(user, "a")) {
-                                products = p.getProducts();
-                                printTable(products, 4, false);
+                p.updateProductDetails(productId);
+                p.clear();
+            }
+            else if (command[1] == "employee" && checkUser(user, "a")) {
+                string employeeId;
+                cout << "Enter employee Id: ";
+                getline(cin, employeeId);
+                employeeId = trim(employeeId);
 
-                            }
+                e.updateUserDetails(employeeId);
+                e.clear();
+            }
+        }
+        else if (command[0] == "show") {
+            if (command[1] == "product") {
+                vector<vector<string>> products;
+                if (command.size() == 2) {
+                    products = p.getProducts();
+                    printTable(products, -1);
+                }
+                else if (command.size() == 4) {
+                    if (command[2] == "category" && checkUser(user, "a")) {
+                        products = p.getProductsByCategory(command[3]);
+                        printTable(products);
+                    }
+                    else if (command[2] == "storeLocation" && checkUser(user, "a")) {
+                        products = p.getProductsByStoreLocation(command[3]);
+                        printTable(products);
+                    }
+                    else if (command[2] == "asc") {
+                        if (command[3] == "price" && checkUser(user, "a")) {
+                            products = p.getProducts();
+                            printTable(products, 3, true);
+                        }
+                        else if (command[3] == "quantity" && checkUser(user, "a")) {
+                            products = p.getProducts();
+                            printTable(products, 4, true);
+
+                        }
+                    }
+                    else if (command[2] == "desc") {
+                        if (command[3] == "price" && checkUser(user, "a")) {
+                            products = p.getProducts();
+                            printTable(products, 3, false);
+                        }
+                        else if (command[3] == "quantity" && checkUser(user, "a")) {
+                            products = p.getProducts();
+                            printTable(products, 4, false);
+
                         }
                     }
                 }
-                else if (command[1] == "employee") {
-                    vector<vector<string>> employees;
-                    if (command.size() == 2 && checkUser(user, "a")) {
-                        employees = e.getUsers();
+            }
+            else if (command[1] == "employee") {
+                vector<vector<string>> employees;
+                if (command.size() == 2 && checkUser(user, "a")) {
+                    employees = e.getUsers();
+                    printTable(employees);
+                }
+                else if (command.size() == 4) {
+                    if (command[2] == "position" && checkUser(user, "a")) {
+                        employees = e.getEmployeesByPosition(command[3]);
                         printTable(employees);
-                    }
-                    else if(command.size() == 4) {
-                        if (command[2] == "position" && checkUser(user, "a")) {
-                            employees = e.getEmployeesByPosition(command[3]);
-                            printTable(employees);
-                        }
                     }
                 }
             }
         }
+
+
     } while (command[0] != "exit");
 
 
