@@ -122,7 +122,7 @@ int main() {
     string productCSV = "product_details.csv";
     string orderCSV = "order_details.csv";
 
-    cout << "Welcome to Aotearoa Treasures’s inventory management system\n" << endl;
+    cout << "Welcome to Aotearoa Treasuresâ€™s inventory management system\n" << endl;
 
     cout << "Please login to use this software. If you don't have account, please create one." << endl;
     cout << "Type 'login' to login." << endl;
