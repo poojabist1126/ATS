@@ -177,31 +177,31 @@ int main() {
                     products = p.getProducts();
                     printTable(products, -1);
                 } else if (command.size() == 4) {
-                    if (command[2] == "category" && checkUser(user, "a")) {
+                    if (command[2] == "category") {
                         products = p.getProductsByCategory(command[3]);
                         printTable(products);
                     }
-                    else if (command[2] == "storeLocation" && checkUser(user, "a")) {
+                    else if (command[2] == "storeLocation") {
                         products = p.getProductsByStoreLocation(command[3]);
                         printTable(products);
                     }
                     else if (command[2] == "asc") {
-                        if (command[3] == "price" && checkUser(user, "a")) {
+                        if (command[3] == "price") {
                             products = p.getProducts();
                             printTable(products, 3, true);
                         }
-                        else if (command[3] == "quantity" && checkUser(user, "a")) {
+                        else if (command[3] == "quantity") {
                             products = p.getProducts();
                             printTable(products, 4, true);
 
                         }
                     }
                     else if (command[2] == "desc") {
-                        if (command[3] == "price" && checkUser(user, "a")) {
+                        if (command[3] == "price") {
                             products = p.getProducts();
                             printTable(products, 3, false);
                         }
-                        else if (command[3] == "quantity" && checkUser(user, "a")) {
+                        else if (command[3] == "quantity") {
                             products = p.getProducts();
                             printTable(products, 4, false);
 
@@ -248,7 +248,7 @@ int main() {
                 product = p.getDetails(command[1]);
 
                 if (product.empty()) {
-                    cout << "Product ID doesn't exists." << endl;
+                    cout << "Product doesn't exists." << endl;
                     continue;
                 }
 
