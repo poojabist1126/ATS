@@ -147,6 +147,7 @@
     <None Include="admin_details.csv" />
     <None Include="customer_details.csv" />
     <None Include="employee_details.csv" />
+    <None Include="employee_roster.csv" />
     <None Include="order_details.csv" />
     <None Include="product_details.csv" />
   </ItemGroup>

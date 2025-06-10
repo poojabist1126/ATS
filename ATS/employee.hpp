@@ -16,6 +16,7 @@ private:
     std::string joinedDate;
     std::string res;
     std::string filePath = "employee_details.csv";
+    std::string rosterPath = "employee_roster.csv";
 public:
     std::vector<std::string> askDetails();
     std::vector<std::string> appendDetails();
@@ -24,6 +25,7 @@ public:
     bool updateUserDetails(std::string username);
     std::vector<std::vector<std::string>> getUsers();
     std::vector<std::vector<std::string>> getEmployeesByPosition(std::string position);
+    void updateRoster(std::string employeeId);
     void clear();
 };
 

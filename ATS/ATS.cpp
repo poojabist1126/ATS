@@ -169,6 +169,14 @@ int main() {
 
                 e.updateUserDetails(employeeId);
             }
+            else if (command[1] == "roster" && checkUser(user, "a")) {
+                string employeeId;
+                cout << "Enter employee Id: ";
+                getline(cin, employeeId);
+                employeeId = trim(employeeId);
+
+                e.updateRoster(employeeId);
+            }
         }
         else if (command[0] == "show") {
             if (command[1] == "product") {
@@ -273,8 +281,6 @@ int main() {
         p.clear();
         e.clear();
         c.clear();
-
-
     } while (command[0] != "exit");
 
 

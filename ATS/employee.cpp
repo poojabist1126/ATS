@@ -2,6 +2,7 @@
 #include "commonfunc.hpp"
 #include "modcsv.hpp"
 #include <iostream>
+#include <map>
 
 using namespace std;
 
@@ -214,6 +215,31 @@ vector<vector<string>> Employee::getEmployeesByPosition(string position) {
     }
 
     return filtered;
+}
+
+void Employee::updateRoster(string employeeId) {
+    if (!getDetails(employeeId).empty()) {
+        vector<string> days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+        vector<string> shifts;
+        string payRate = "0";
+        string shift;
+
+        cout << "Pay rate (per hour): ";
+        cin >> payRate;
+
+        for (int i = 0; i < days.size(); i++) {
+            cout << days[i] << ": ";
+            getline(cin, shifts[i]);
+
+            if (shifts[i].empty())
+                shifts[i] = "";
+        }
+
+        writeCsvFile(rosterPath, { shifts.push_back(payRate) }, true);
+    }
+    else {
+        cout << "Employee Id is not valid" << endl;
+    }
 }
 
 void Employee::clear() {
