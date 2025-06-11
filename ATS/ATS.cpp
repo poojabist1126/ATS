@@ -231,6 +231,11 @@ int main() {
                 }
                 
             }
+            else if (command[1] == "roster") {
+                if (command.size() == 2 && checkUser(user, "a")) {
+                    printTable(e.getRosters());
+                }
+            }
         }
         else if (command[0] == "buy" && checkUser(user, "c")) {
             vector<string> product;

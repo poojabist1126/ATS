@@ -26,6 +26,7 @@ public:
     std::vector<std::vector<std::string>> getUsers();
     std::vector<std::vector<std::string>> getEmployeesByPosition(std::string position);
     void updateRoster(std::string employeeId);
+    std::vector<std::vector<std::string>> getRosters();
     void clear();
 };
 

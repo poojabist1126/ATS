@@ -222,24 +222,35 @@ void Employee::updateRoster(string employeeId) {
         vector<string> days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
         vector<string> shifts;
         string payRate = "0";
-        string shift;
 
         cout << "Pay rate (per hour): ";
         cin >> payRate;
+        cin.ignore();
 
         for (int i = 0; i < days.size(); i++) {
+            string shift;
             cout << days[i] << ": ";
-            getline(cin, shifts[i]);
+            getline(cin, shift);
 
-            if (shifts[i].empty())
-                shifts[i] = "";
+            if (shift.empty()) {
+                shift = "-";
+                continue;
+            }
+
+            shifts.push_back(shift);
         }
-
-        writeCsvFile(rosterPath, { shifts.push_back(payRate) }, true);
+        
+        shifts.insert(shifts.begin(), payRate);
+        shifts.insert(shifts.begin(), employeeId);
+        writeCsvFile(rosterPath, { shifts }, true);
     }
     else {
         cout << "Employee Id is not valid" << endl;
     }
+}
+
+vector<vector<string>> Employee::getRosters() {
+    return readCsvFile(rosterPath);
 }
 
 void Employee::clear() {
