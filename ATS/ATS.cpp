@@ -144,7 +144,7 @@ int main() {
         }
 
 
-        if (command[0] == "add") {
+        if (command[0] == "add" && command.size() == 2) {
             if (command[1] == "product" && checkUser(user, "a")) {
                 p.appendDetails();
             }
@@ -163,7 +163,7 @@ int main() {
                 e.addRoster(employeeId);
             }
         }
-        else if (command[0] == "update") {
+        else if (command[0] == "update" && command.size() == 2) {
             if (command[1] == "product" && checkUser(user, "a")) {
                 string productId;
                 cout << "Enter product Id: ";
@@ -185,9 +185,6 @@ int main() {
                 cout << "Enter employee Id: ";
                 getline(cin, employeeId);
                 employeeId = trim(employeeId);
-
-                if (employeeId.empty())
-                    continue;
 
                 e.updateRosters(employeeId);
             }
@@ -294,6 +291,24 @@ int main() {
                 cout << "Payment method Cash on Delivery" << endl;
                 cout << "Location: " << product[5] << endl;
             }            
+        }
+        else if (command[0] == "delete" && command.size() == 2) {
+            if (command[1] == "employee" && checkUser(user, "a")) {
+                string employeeId;
+                cout << "Enter employee Id: ";
+                getline(cin, employeeId);
+                employeeId = trim(employeeId);
+
+                e.deleteUser(employeeId);
+            }
+            else if (command[1] == "roster" && checkUser(user, "a")) {
+                string employeeId;
+                cout << "Enter employee Id: ";
+                getline(cin, employeeId);
+                employeeId = trim(employeeId);
+
+                e.deleteRoster(employeeId);
+            }
         }
 
         p.clear();

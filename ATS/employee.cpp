@@ -201,6 +201,13 @@ bool Employee::updateUserDetails(string employeeId) {
     return true;
 }
 
+void Employee::deleteUser(string employeeId) {
+    if (getDetails(employeeId).empty())
+        cout << "Employee not found." << endl;
+    else
+        deleteDetails(filePath, 0, employeeId);
+}
+
 vector<vector<string>> Employee::getUsers() {
     return readCsvFile(filePath);
 }
@@ -331,6 +338,16 @@ bool Employee::updateRosters(string employeeId) {
         cout << "Employee doesn't exists." << endl;
         return false;
     }
+}
+
+void Employee::deleteRoster(string employeeId) {
+    if (getDetails(employeeId).empty())
+        cout << "Employee not found." << endl;
+    else
+        if (isRosterExist(employeeId))
+            deleteDetails(rosterPath, 0, employeeId);
+        else
+            cout << "Roster not found." << endl;
 }
 
 void Employee::clear() {
