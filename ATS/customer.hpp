@@ -19,6 +19,7 @@ public:
     bool isUserExist(std::string username);
     std::vector<std::string> getDetails(std::string username);
     bool updateUserDetails(std:: string username);
+    void deleteUser(std::string username);
     void clear();
 };
 

@@ -23,9 +23,14 @@ public:
     bool isUserExist(std::string username);
     std::vector<std::string> getDetails(std::string username);
     bool updateUserDetails(std::string username);
+    void deleteUser(std::string employeeId);
     std::vector<std::vector<std::string>> getUsers();
     std::vector<std::vector<std::string>> getEmployeesByPosition(std::string position);
-    void updateRoster(std::string employeeId);
+    void addRoster(std::string employeeId);
+    bool isRosterExist(std::string employeeId);
+    std::vector<std::vector<std::string>> getRosters();
+    bool updateRosters(std::string employeeId);
+    void deleteRoster(std::string employeeId);
     void clear();
 };
 

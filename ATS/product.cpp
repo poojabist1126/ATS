@@ -237,6 +237,13 @@ vector<vector<string>> Product::getProducts() {
     return readCsvFile(filePath);
 }
 
+void Product::deleteProduct(string productId) {
+    if (getDetails(productId).empty())
+        cout << "Product not found." << endl;
+    else
+        deleteDetails(filePath, 0, productId);
+}
+
 void Product::clear() {
     productId.clear();
     name.clear();

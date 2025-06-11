@@ -144,6 +144,13 @@ bool Customer::updateUserDetails(string username) {
     return true;
 }
 
+void Customer::deleteUser(string username) {
+    if (getDetails(username).empty())
+        cout << "Customer not found." << endl;
+    else
+        deleteDetails(filePath, 1, username);
+}
+
 void Customer::clear() {
     name.clear();
     username.clear();
