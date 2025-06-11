@@ -309,6 +309,22 @@ int main() {
 
                 e.deleteRoster(employeeId);
             }
+            else if (command[1] == "product" && checkUser(user, "a")) {
+                string productId;
+                cout << "Enter product Id: ";
+                getline(cin, productId);
+                productId = trim(productId);
+
+                p.deleteProduct(productId);
+            }
+            else if (command[1] == "customer" && checkUser(user, "a")) {
+                string username;
+                cout << "Enter username: ";
+                getline(cin, username);
+                username = trim(username);
+
+                c.deleteUser(username);
+            }
         }
 
         p.clear();
