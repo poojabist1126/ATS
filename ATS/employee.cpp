@@ -121,6 +121,7 @@ bool Employee::isUserExist(string employeeId) {
 
     return false;
 }
+
 vector<string> Employee::getDetails(string employeeId) {
     if (isUserExist(employeeId)) {
         vector<vector<string>> details = readCsvFile(filePath);
@@ -217,40 +218,119 @@ vector<vector<string>> Employee::getEmployeesByPosition(string position) {
     return filtered;
 }
 
-void Employee::updateRoster(string employeeId) {
+bool Employee::isRosterExist(string employeeId) {
+    if (employeeId.empty() || employeeId == "")
+        return false;
+
+    vector<vector<string>> details = readCsvFile(rosterPath);
+    int i = 0;
+
+    for (i = 0; i < details.size(); i++) {
+        if (employeeId == details[i][0]) {
+            return true;
+            break;
+        }
+    }
+
+    return false;
+}
+
+void Employee::addRoster(string employeeId) {
     if (!getDetails(employeeId).empty()) {
-        vector<string> days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
-        vector<string> shifts;
-        string payRate = "0";
+        if (!isRosterExist(employeeId)) {
+            vector<string> days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+            vector<string> shifts;
+            string payRate = "0";
 
-        cout << "Pay rate (per hour): ";
-        cin >> payRate;
-        cin.ignore();
+            cout << "Pay rate (per hour): ";
+            cin >> payRate;
+            cin.ignore();
 
-        for (int i = 0; i < days.size(); i++) {
-            string shift;
-            cout << days[i] << ": ";
-            getline(cin, shift);
+            cout << "\nLeave blank for no shift." << endl;
 
-            if (shift.empty()) {
-                shift = "-";
-                continue;
+            for (int i = 0; i < days.size(); i++) {
+                string start, end;
+                cout << "\n" << days[i] << ":" << endl;
+                cout << "Start: ";
+                getline(cin, start);
+
+                if (!start.empty()) {
+                    cout << "End: ";
+                    getline(cin, end);
+                    shifts.push_back(trim(start) + "-" + trim(end));
+                }
+                else {
+                    shifts.push_back("-");
+                }
             }
 
-            shifts.push_back(shift);
+            shifts.insert(shifts.begin(), payRate);
+            shifts.insert(shifts.begin(), employeeId);
+            writeCsvFile(rosterPath, { shifts }, true);
         }
-        
-        shifts.insert(shifts.begin(), payRate);
-        shifts.insert(shifts.begin(), employeeId);
-        writeCsvFile(rosterPath, { shifts }, true);
+        else {
+            cout << "Employee's roster already exists." << endl;
+            cout << "Type update roster for updating roster." << endl;
+        }
     }
     else {
-        cout << "Employee Id is not valid" << endl;
+        cout << "Employee doesn't exists." << endl;
     }
 }
 
 vector<vector<string>> Employee::getRosters() {
     return readCsvFile(rosterPath);
+}
+
+bool Employee::updateRosters(string employeeId) {
+    if (!getDetails(employeeId).empty()) {
+        if (isRosterExist(employeeId)) {
+            vector<string> days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+            vector<string> shifts;
+            string payRate;
+
+            cout << "Leave blank to make value as it is." << endl;
+            cout << "Type d to delete the roster." << endl;
+
+            cout << "Pay rate (per hour): ";
+            cin >> payRate;
+            cin.ignore();
+
+            cout << "\nLeave blank for leaving roster as it is." << endl;
+
+            for (int i = 0; i < days.size(); i++) {
+                string start, end;
+                cout << "\n" << days[i] << ":" << endl;
+                cout << "Start: ";
+                getline(cin, start);
+                
+                if (trim(start) == "d") {
+                    shifts.push_back("-");
+                } else if (start.empty()) {
+                    shifts.push_back("");
+                }
+                else {
+                    cout << "End: ";
+                    getline(cin, end);
+                    shifts.push_back(trim(start) + "-" + trim(end));
+                }
+            }
+
+            shifts.insert(shifts.begin(), payRate);
+            shifts.insert(shifts.begin(), employeeId);
+
+            updateDetails(rosterPath, 0, trim(employeeId), { shifts });
+            return true;
+        }
+        else {
+            cout << "Employee's roster does not exists." << endl;
+            cout << "Type add roster for adding roster." << endl;
+        }
+    }
+    else {
+        cout << "Employee doesn't exists." << endl;
+        return false;
+    }
 }
 
 void Employee::clear() {

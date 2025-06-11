@@ -151,6 +151,17 @@ int main() {
             else if (command[1] == "employee" && checkUser(user, "a")) {
                 e.appendDetails();
             }
+            else if (command[1] == "roster" && checkUser(user, "a")) {
+                string employeeId;
+                cout << "Enter employee Id: ";
+                getline(cin, employeeId);
+                employeeId = trim(employeeId);
+
+                if (employeeId.empty())
+                    continue;
+
+                e.addRoster(employeeId);
+            }
         }
         else if (command[0] == "update") {
             if (command[1] == "product" && checkUser(user, "a")) {
@@ -175,7 +186,10 @@ int main() {
                 getline(cin, employeeId);
                 employeeId = trim(employeeId);
 
-                e.updateRoster(employeeId);
+                if (employeeId.empty())
+                    continue;
+
+                e.updateRosters(employeeId);
             }
         }
         else if (command[0] == "show") {
@@ -229,7 +243,6 @@ int main() {
                         printTable(employees);
                     }
                 }
-                
             }
             else if (command[1] == "roster") {
                 if (command.size() == 2 && checkUser(user, "a")) {
