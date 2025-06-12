@@ -1,0 +1,27 @@
+command,function
+signup,To create a account
+login,To login as a customer
+login admin,To login as an admin
+logout,To logout
+add product,To add product (must be logged in as admin)
+add employee,To add employee (must be logged in as admin)
+add roster,To add roster (must be logged in as admin)
+update product,To update details of products (must be logged in as admin)
+update employee,To update details of employees (must be logged in as admin)
+update roster,To update details of rosters (must be logged in as admin)
+show product,To show all products
+show product category <category name>,To show products of specific category only
+show product storeLocation <store location name>,To show products of specific location only
+show product asc price,To show products in ascending order by price
+show product asc quantity,To show products in ascending order by quantity
+show product desc price,To show products in descending order by price
+show product desc quantity,To show products in descending order by quantity
+show employee,To show all employees (must be logged in as admin)
+show employee position <position>,To show products of specific position only (must be logged in as admin)
+show roster,To show all rosters (must be logged in as admin)
+buy <product Id>,To buy product
+delete employee,To delete employee (must be logged in as admin)
+delete roster,To delete roster (must be logged in as admin)
+delete product,To delete product (must be logged in as admin)
+delete customer,To delete customer (must be logged in as admin)
+help,To get commands list

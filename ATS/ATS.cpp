@@ -135,7 +135,7 @@ int main() {
         command = getCommand();
 
         userAuthentication(user, command);
-
+        
         if (command[0] == "logout" && checkUser(user, "") && command.size() == 1) {
             user["username"] = "";
             user["type"] = "";
@@ -195,8 +195,7 @@ int main() {
                 if (command.size() == 2) {
                     products = p.getProducts();
                     printTable(products, -1);
-                }
-                else if (command.size() == 4) {
+                } else if (command.size() == 4) {
                     if (command[2] == "category") {
                         products = p.getProductsByCategory(command[3]);
                         printTable(products);
@@ -229,28 +228,28 @@ int main() {
                     }
                 }
             }
-            else if (command[1] == "employee") {
+            else if (command[1] == "employee" && checkUser(user, "a")) {
                 vector<vector<string>> employees;
-                if (command.size() == 2 && checkUser(user, "a")) {
+                if (command.size() == 2) {
                     employees = e.getUsers();
                     printTable(employees);
                 }
-                else if (command.size() == 4) {
-                    if (command[2] == "position" && checkUser(user, "a")) {
+                else if(command.size() == 4) {
+                    if (command[2] == "position") {
                         employees = e.getEmployeesByPosition(command[3]);
                         printTable(employees);
                     }
                 }
             }
-            else if (command[1] == "roster") {
-                if (command.size() == 2 && checkUser(user, "a")) {
+            else if (command[1] == "roster" && checkUser(user, "a")) {
+                if (command.size() == 2) {
                     printTable(e.getRosters());
                 }
             }
         }
         else if (command[0] == "buy" && checkUser(user, "c")) {
             vector<string> product;
-
+            
             if (command.size() == 2) {
                 string quantity;
                 string res;
@@ -291,7 +290,7 @@ int main() {
                 cout << "Order will delivered within T+3 days." << endl;
                 cout << "Payment method Cash on Delivery" << endl;
                 cout << "Location: " << product[5] << endl;
-            }
+            }            
         }
         else if (command[0] == "delete" && command.size() == 2) {
             if (command[1] == "employee" && checkUser(user, "a")) {
@@ -328,7 +327,7 @@ int main() {
             }
         }
         else if (command[0] == "help" && command.size() == 1) {
-
+            printTable(readCsvFile("help.csv"));
         }
 
         p.clear();
