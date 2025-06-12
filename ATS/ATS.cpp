@@ -16,7 +16,7 @@
 using namespace std;
 
 void userAuthentication(map<string, string>& user, vector<string> command) {
-    if (command[0] == "signup") {
+    if (command[0] == "signup" && command.size() == 1) {
         if (user["username"] == "") {
             cout << "Please enter the details.\n" << endl;
 
@@ -62,7 +62,7 @@ void userAuthentication(map<string, string>& user, vector<string> command) {
                     cout << "User doesn't exists, please enter valid username. If you don't have account please signup.\nTo signup, please type 'signup'. Thank You" << endl;
                 }
             }
-            else if (command[1] == "admin") {
+            else if (command[1] == "admin" && command.size() == 2) {
                 Admin a;
                 string username, password;
                 vector<string> details;
@@ -135,8 +135,8 @@ int main() {
         command = getCommand();
 
         userAuthentication(user, command);
-        
-        if (command[0] == "logout" && checkUser(user, "")) {
+
+        if (command[0] == "logout" && checkUser(user, "") && command.size() == 1) {
             user["username"] = "";
             user["type"] = "";
 
@@ -195,7 +195,8 @@ int main() {
                 if (command.size() == 2) {
                     products = p.getProducts();
                     printTable(products, -1);
-                } else if (command.size() == 4) {
+                }
+                else if (command.size() == 4) {
                     if (command[2] == "category") {
                         products = p.getProductsByCategory(command[3]);
                         printTable(products);
@@ -234,7 +235,7 @@ int main() {
                     employees = e.getUsers();
                     printTable(employees);
                 }
-                else if(command.size() == 4) {
+                else if (command.size() == 4) {
                     if (command[2] == "position" && checkUser(user, "a")) {
                         employees = e.getEmployeesByPosition(command[3]);
                         printTable(employees);
@@ -249,7 +250,7 @@ int main() {
         }
         else if (command[0] == "buy" && checkUser(user, "c")) {
             vector<string> product;
-            
+
             if (command.size() == 2) {
                 string quantity;
                 string res;
@@ -290,7 +291,7 @@ int main() {
                 cout << "Order will delivered within T+3 days." << endl;
                 cout << "Payment method Cash on Delivery" << endl;
                 cout << "Location: " << product[5] << endl;
-            }            
+            }
         }
         else if (command[0] == "delete" && command.size() == 2) {
             if (command[1] == "employee" && checkUser(user, "a")) {
@@ -325,6 +326,9 @@ int main() {
 
                 c.deleteUser(username);
             }
+        }
+        else if (command[0] == "help" && command.size() == 1) {
+
         }
 
         p.clear();
