@@ -16,7 +16,7 @@
 using namespace std;
 
 void userAuthentication(map<string, string>& user, vector<string> command) {
-    if (command[0] == "signup") {
+    if (command[0] == "signup" && command.size() == 1) {
         if (user["username"] == "") {
             cout << "Please enter the details.\n" << endl;
 
@@ -62,7 +62,7 @@ void userAuthentication(map<string, string>& user, vector<string> command) {
                     cout << "User doesn't exists, please enter valid username. If you don't have account please signup.\nTo signup, please type 'signup'. Thank You" << endl;
                 }
             }
-            else if (command[1] == "admin") {
+            else if (command[1] == "admin" && command.size() == 2) {
                 Admin a;
                 string username, password;
                 vector<string> details;
@@ -136,7 +136,7 @@ int main() {
 
         userAuthentication(user, command);
         
-        if (command[0] == "logout" && checkUser(user, "")) {
+        if (command[0] == "logout" && checkUser(user, "") && command.size() == 1) {
             user["username"] = "";
             user["type"] = "";
 
@@ -228,21 +228,21 @@ int main() {
                     }
                 }
             }
-            else if (command[1] == "employee") {
+            else if (command[1] == "employee" && checkUser(user, "a")) {
                 vector<vector<string>> employees;
-                if (command.size() == 2 && checkUser(user, "a")) {
+                if (command.size() == 2) {
                     employees = e.getUsers();
                     printTable(employees);
                 }
                 else if(command.size() == 4) {
-                    if (command[2] == "position" && checkUser(user, "a")) {
+                    if (command[2] == "position") {
                         employees = e.getEmployeesByPosition(command[3]);
                         printTable(employees);
                     }
                 }
             }
-            else if (command[1] == "roster") {
-                if (command.size() == 2 && checkUser(user, "a")) {
+            else if (command[1] == "roster" && checkUser(user, "a")) {
+                if (command.size() == 2) {
                     printTable(e.getRosters());
                 }
             }
@@ -325,6 +325,9 @@ int main() {
 
                 c.deleteUser(username);
             }
+        }
+        else if (command[0] == "help" && command.size() == 1) {
+            printTable(readCsvFile("help.csv"));
         }
 
         p.clear();

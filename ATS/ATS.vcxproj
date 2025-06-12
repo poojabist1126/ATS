@@ -148,11 +148,9 @@
     <None Include="customer_details.csv" />
     <None Include="employee_details.csv" />
     <None Include="employee_roster.csv" />
+    <None Include="help.csv" />
     <None Include="order_details.csv" />
     <None Include="product_details.csv" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="help.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
