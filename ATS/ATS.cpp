@@ -329,6 +329,20 @@ int main() {
         else if (command[0] == "help" && command.size() == 1) {
             printTable(readCsvFile("help.csv"));
         }
+        else if (command[0] == "alert" && checkUser(user, "a")) {
+            if (command[1] == "quantity" && command.size() == 2) {
+                vector<vector<string>> filtered, output = p.getProducts();
+                cout << "Products with less than 5 quantity:\n" << endl;
+
+                for (const auto& row : output) {
+                    if (row.size() > 4 && (row[4] == "0" || row[4] == "1" || row[4] == "2" || row[4] == "3" || row[4] == "4" || filtered.size() == 0)) {
+                        filtered.push_back(row);
+                    }
+                }
+
+                printTable(filtered);
+            }
+        }
 
         p.clear();
         e.clear();

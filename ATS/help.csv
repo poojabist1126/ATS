@@ -25,3 +25,4 @@ delete roster,To delete roster (must be logged in as admin)
 delete product,To delete product (must be logged in as admin)
 delete customer,To delete customer (must be logged in as admin)
 help,To get commands list
+alert quantity, To show the product which has less than 5 quantity left
