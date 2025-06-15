@@ -16,16 +16,18 @@
 using namespace std;
 
 void userAuthentication(map<string, string>& user, vector<string> command) {
+    // user authentication function 
+
     if (command[0] == "signup" && command.size() == 1) {
         if (user["username"] == "") {
             cout << "Please enter the details.\n" << endl;
 
             Customer c;
 
-            vector<string> details = c.appendDetails();
+            vector<string> details = c.appendDetails(); // appends details to customer details csv file
 
             user["username"] = details[1];
-            user["type"] = "c";
+            user["type"] = "c"; // sets user's type to customer
 
             cout << "Congratulations, " + details[0] + " you have successfully created account as " + user["username"] + "." << endl;
         }
@@ -44,13 +46,15 @@ void userAuthentication(map<string, string>& user, vector<string> command) {
                 getline(cin, username);
 
                 if (c.isUserExist(username)) {
+                    // excutes only if the username exists in the csv file
                     cout << "Password: ";
                     getline(cin, password);
 
-                    details = c.getDetails(username);
+                    details = c.getDetails(username); // gets the details from customer csv file
+
                     if (details[3] == trim(password)) {
                         user["username"] = trim(username);
-                        user["type"] = "c";
+                        user["type"] = "c"; // sets user's type to customer
 
                         cout << "Welcome " << details[0] << ", login successful." << endl;
                     }
@@ -71,10 +75,11 @@ void userAuthentication(map<string, string>& user, vector<string> command) {
                 getline(cin, username);
 
                 if (a.isUserExist(username)) {
+                    // excutes only if the username exists in the csv file
                     cout << "Password: ";
                     getline(cin, password);
 
-                    details = a.getDetails(username);
+                    details = a.getDetails(username); // gets the details from admin csv file
                     if (details[1] == trim(password)) {
                         user["username"] = trim(username);
                         user["type"] = "a";
@@ -99,6 +104,7 @@ void userAuthentication(map<string, string>& user, vector<string> command) {
 
 bool checkUser(map<string, string> user, string commandOf = "") {
     if (user["username"] == "" && user["type"] == "") {
+        // executes if no user has been registered
         cout << "You are not logged in." << endl;
         cout << "To log in, type: 'login'." << endl;
         cout << "To create an account, type: 'signup'." << endl;
@@ -106,6 +112,7 @@ bool checkUser(map<string, string> user, string commandOf = "") {
         return false;
     }
     else if (user["username"] != "" && user["type"] == "c" && commandOf == "a") {
+        // executes if user want to executes command of admin but is logined as a customer
         cout << "Must be loggedIn as admin." << endl;
         return false;
     }
@@ -122,6 +129,7 @@ int main() {
     string productCSV = "product_details.csv";
     string orderCSV = "order_details.csv";
 
+    // starting messages
     cout << "Welcome to Aotearoa Treasures’s inventory management system\n" << endl;
 
     cout << "Please login to use this software. If you don't have account, please create one." << endl;
@@ -134,9 +142,10 @@ int main() {
         cout << ">>> ";
         command = getCommand();
 
-        userAuthentication(user, command);
+        userAuthentication(user, command); // user authentication
         
         if (command[0] == "logout" && checkUser(user, "") && command.size() == 1) {
+            // to logout executes only if user is registered
             user["username"] = "";
             user["type"] = "";
 
@@ -146,12 +155,15 @@ int main() {
 
         if (command[0] == "add" && command.size() == 2) {
             if (command[1] == "product" && checkUser(user, "a")) {
+                // adds product
                 p.appendDetails();
             }
             else if (command[1] == "employee" && checkUser(user, "a")) {
+                // adds employee
                 e.appendDetails();
             }
             else if (command[1] == "roster" && checkUser(user, "a")) {
+                // adds rooster
                 string employeeId;
                 cout << "Enter employee Id: ";
                 getline(cin, employeeId);
