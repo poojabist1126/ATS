@@ -12,6 +12,7 @@
 using namespace std;
 
 string getCurrentDateTime() {
+    // gets current date and time
     auto now = chrono::system_clock::now();
 
     time_t now_c = chrono::system_clock::to_time_t(now);
@@ -40,10 +41,13 @@ vector<string> getCommand() {
         words.push_back(word);
     }
 
+    // words vector contains command passed by user in seperate words
+
     return words;
 }
 
 string trim(const string& s) {
+    // trims whitespace of a string
     if (s.empty())
         return "";
 
@@ -58,51 +62,12 @@ string trim(const string& s) {
     return (start < end) ? string(start, end) : "";
 }
 
-void displayTable(const vector<vector<string>>& data) {
-    if (data.empty()) {
-        cout << "Empty table." << endl;
-        return;
-    }
-
-    size_t numCols = 0;
-    for (const auto& row : data) {
-        numCols = max(numCols, row.size());
-    }
-
-    vector<size_t> colWidths(numCols, 0);
-    for (const auto& row : data) {
-        for (size_t i = 0; i < row.size(); ++i) {
-            colWidths[i] = max(colWidths[i], row[i].length());
-        }
-    }
-
-    for (size_t r = 0; r < data.size(); ++r) {
-        for (size_t c = 0; c < numCols; ++c) {
-            string cell = (c < data[r].size()) ? data[r][c] : "";
-            cout << left << setw(colWidths[c] + 2) << cell;
-        }
-        cout << endl;
-
-        if (r == 0) {
-            for (size_t c = 0; c < numCols; ++c) {
-                cout << string(colWidths[c] + 2, '*');
-            }
-            cout << endl;
-        }
-        else {
-            for (size_t c = 0; c < numCols; ++c) {
-                cout << string(colWidths[c] + 2, '-');
-            }
-            cout << endl;
-        }
-    }
-}
-
 string generateRandomNumByTime() {
-    string dateTime = getCurrentDateTime();
+    // gets random number by time 
+    string dateTime = getCurrentDateTime(); // gets current date and time
 
-    string datePart = dateTime.substr(0, 10);
-    string timePart = dateTime.substr(11, 8);
+    string datePart = dateTime.substr(0, 10); // gets date, which lies between 0 and 10 index
+    string timePart = dateTime.substr(11, 8); // gets time, which lies between 11 and 8
 
     datePart.erase(remove(datePart.begin(), datePart.end(), '-'), datePart.end());
     timePart.erase(remove(timePart.begin(), timePart.end(), ':'), timePart.end());
@@ -115,10 +80,12 @@ string generateRandomNumByTime() {
     ostringstream randn;
     randn << datePart << timePart << random_number;
 
-    return randn.str();
+    return randn.str(); // passes as a string
 }
 
 bool isValidEmail(const string& email) {
+    // condition for a valid email
+    // must contain @ and .
     if (email.empty())
         return false;
 
@@ -134,6 +101,10 @@ bool isValidNZMobileNumber(const string& number) {
 }
 
 bool isValidPassword(const string& password) {
+    // condition for a valid password
+    // must be longer than 5 characters
+    // must contains at least one capital letter
+    // must contains at least one number
     if (password.length() < 6 || password.empty()) {
         return false;
     }
@@ -154,6 +125,8 @@ bool isValidGender(const string& gender) {
 }
 
 bool isNumber(const string& str) {
+    // checks if the passed string is a valid number 
+    // can check both float and interger
     if (str.empty() || std::all_of(str.begin(), str.end(), ::isspace)) {
         return false;
     }
@@ -165,6 +138,7 @@ bool isNumber(const string& str) {
 }
 
 bool isWholeNumber(const string& str) {
+    // checks it the passed number is a whole number or not
     if (str.empty()) return false;
 
     if (str[0] == '-') return false;
@@ -177,9 +151,11 @@ bool isWholeNumber(const string& str) {
 }
 
 void printTable(const vector<vector<string>>& table, int sortByColumn, bool ascending) {
+    // display vector<vector<string>> format data in table format
     if (table.empty()) return;
 
     size_t numCols = 0;
+    // gets number of columns
     for (const auto& row : table)
         numCols = max(numCols, row.size());
 
@@ -194,6 +170,7 @@ void printTable(const vector<vector<string>>& table, int sortByColumn, bool asce
     }
 
     vector<size_t> colWidths(numCols, 0);
+    // gets width of each columns
     for (const auto& row : sortedTable)
         for (size_t i = 0; i < row.size(); ++i)
             colWidths[i] = max(colWidths[i], row[i].length());
@@ -203,7 +180,7 @@ void printTable(const vector<vector<string>>& table, int sortByColumn, bool asce
         for (auto width : colWidths)
             cout << string(width + 2, '-') << "+";
         cout << '\n';
-        };
+        }; // prints border
 
     auto printRow = [&](const vector<string>& row) {
         cout << "|";
@@ -212,7 +189,7 @@ void printTable(const vector<vector<string>>& table, int sortByColumn, bool asce
             cout << " " << left << setw(colWidths[i]) << cell << " |";
         }
         cout << '\n';
-        };
+        }; // prints row
 
     printBorder();
     bool isHeader = true;
