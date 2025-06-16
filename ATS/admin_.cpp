@@ -6,6 +6,9 @@
 using namespace std;
 
 vector<string> Admin::askDetails() {
+    // the while loop loops until a certian function is not met
+    // if typed q whole function gets terminated
+
     while (username.empty() && res != "q") {
         cout << "Name: ";
         getline(cin, username);
@@ -39,7 +42,7 @@ vector<string> Admin::askDetails() {
 vector<string> Admin::appendDetails() {
     vector<string> details = askDetails();
 
-    writeCsvFile(filePath, { details }, true);
+    writeCsvFile(filePath, { details }, true); // appends details in admin csv file
 
     return details;
 }
@@ -47,12 +50,14 @@ vector<string> Admin::appendDetails() {
 
 bool Admin::isUserExist(string username) {
     if (username.empty() || username == "")
+        // checks for the value of the parameter
         return false;
 
-    vector<vector<string>> details = readCsvFile(filePath);
+    vector<vector<string>> details = readCsvFile(filePath); // reads admin csv file
     int i = 0;
 
     for (i = 0; i < details.size(); i++) {
+        // details[i][0] means admin username
         if (username == details[i][0]) {
             return true;
             break;
@@ -69,7 +74,7 @@ vector<string> Admin::getDetails(string username) {
 
         for (i = 0; i < details.size(); i++) {
             if (trim(username) == details[i][0]) {
-                return { trim(details[i][0]), trim(details[i][1]) };
+                return { trim(details[i][0]), trim(details[i][1]) }; // returns username and password if the user exists
                 break;
             }
         }
