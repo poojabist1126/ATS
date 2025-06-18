@@ -67,7 +67,7 @@ string generateRandomNumByTime() {
     string dateTime = getCurrentDateTime(); // gets current date and time
 
     string datePart = dateTime.substr(0, 10); // gets date, which lies between 0 and 10 index
-    string timePart = dateTime.substr(11, 8); // gets time, which lies between 11 and 8
+    string timePart = dateTime.substr(11, 8); // gets time, which lies between 11 and 8 
 
     datePart.erase(remove(datePart.begin(), datePart.end(), '-'), datePart.end());
     timePart.erase(remove(timePart.begin(), timePart.end(), ':'), timePart.end());
@@ -157,7 +157,7 @@ void printTable(const vector<vector<string>>& table, int sortByColumn, bool asce
     size_t numCols = 0;
     // gets number of columns
     for (const auto& row : table)
-        numCols = max(numCols, row.size());
+        numCols = max(numCols, row.size()); 
 
     vector<vector<string>> sortedTable = table;
 
