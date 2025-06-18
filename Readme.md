@@ -191,19 +191,3 @@ The system operates through a command-line interface with the following commands
 | `help` | Display list of available commands |
 
 > **Note**: Commands marked as "Admin Only" require admin login to execute.
-
----
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
----
-
-## License
-
-This project is licensed under the terms specified in the LICENSE file.
-
----
-
-**Aotearoa Treasures Ltd.** — *Empowering authentic Kiwi retail with smart inventory and staff management.*
