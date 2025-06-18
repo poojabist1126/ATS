@@ -135,6 +135,65 @@ journey
 
 ---
 
+## Commands Reference
+
+The system operates through a command-line interface with the following commands:
+
+### Authentication Commands
+| Command | Function |
+|---------|-----------|
+| `signup` | Create a new customer account |
+| `login` | Login as a customer |
+| `login admin` | Login as an admin |
+| `logout` | Logout from current session |
+
+### Product Management Commands (Admin Only)
+| Command | Function |
+|---------|-----------|
+| `add product` | Add a new product |
+| `update product` | Update product details |
+| `delete product` | Delete a product |
+| `show product` | Show all products |
+| `show product category <category name>` | Show products of specific category |
+| `show product storeLocation <store location name>` | Show products of specific store location |
+| `show product asc price` | Show products in ascending order by price |
+| `show product asc quantity` | Show products in ascending order by quantity |
+| `show product desc price` | Show products in descending order by price |
+| `show product desc quantity` | Show products in descending order by quantity |
+| `alert quantity` | Show products with less than 5 quantity remaining |
+
+### Employee Management Commands (Admin Only)
+| Command | Function |
+|---------|-----------|
+| `add employee` | Add a new employee |
+| `update employee` | Update employee details |
+| `delete employee` | Delete an employee |
+| `show employee` | Show all employees |
+| `show employee position <position>` | Show employees of specific position |
+
+### Roster Management Commands (Admin Only)
+| Command | Function |
+|---------|-----------|
+| `add roster` | Add a new roster entry |
+| `update roster` | Update roster details |
+| `delete roster` | Delete a roster entry |
+| `show roster` | Show all rosters |
+
+### Customer Commands
+| Command | Function |
+|---------|-----------|
+| `buy <product Id>` | Purchase a product by ID |
+| `delete customer` | Delete customer account (Admin only) |
+
+### Utility Commands
+| Command | Function |
+|---------|-----------|
+| `help` | Display list of available commands |
+
+> **Note**: Commands marked as "Admin Only" require admin login to execute.
+
+---
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
