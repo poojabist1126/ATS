@@ -155,6 +155,11 @@ The system operates through a command-line interface with the following commands
 | `show product desc quantity` | Show products in descending order by quantity |
 | `alert quantity` | Show products with less than 5 quantity remaining |
 
+### Admin Management Commands (Admin Only)
+| Command | Function |
+|---------|-----------|
+| `add admin` | Add a new admin |
+
 ### Employee Management Commands (Admin Only)
 | Command | Function |
 |---------|-----------|
