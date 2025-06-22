@@ -7,6 +7,8 @@
 using namespace std;
 
 vector<string> Employee::askDetails() {
+    // the while loop loops until a certain function is not met
+    // if typed q whole function gets terminated
     while (name.empty() && res != "q") {
         cout << "Name: ";
         getline(cin, name);
@@ -91,7 +93,7 @@ vector<string> Employee::askDetails() {
             return { };
     }
 
-    employeeId = "E" + generateRandomNumByTime();
+    employeeId = "E" + generateRandomNumByTime(); // random id for employee 
 
     cout << "Thanks for the details.\n" << endl;
     return { employeeId, name, position, email, contactNum, address, gender, getCurrentDateTime() };
@@ -107,13 +109,14 @@ vector<string> Employee::appendDetails() {
 
 bool Employee::isUserExist(string employeeId) {
     if (employeeId.empty() || employeeId == "")
-        return false;
+        return false; // checks if the parameter is empty or not
 
-    vector<vector<string>> details = readCsvFile(filePath);
+    vector<vector<string>> details = readCsvFile(filePath); // reads csv file
     int i = 0;
 
     for (i = 0; i < details.size(); i++) {
         if (employeeId == details[i][0]) {
+            // returns true if the employee  uif
             return true;
             break;
         }

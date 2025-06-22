@@ -80,7 +80,7 @@ void userAuthentication(map<string, string>& user, vector<string> command) {
                     getline(cin, password);
 
                     details = a.getDetails(username); // gets the details from admin csv file
-                    if (details[1] == trim(password)) {
+                    if (details[2] == trim(password)) {
                         user["username"] = trim(username);
                         user["type"] = "a";
 
@@ -173,6 +173,9 @@ int main() {
                     continue;
 
                 e.addRoster(employeeId);
+            }
+            else if (command[1] == "admin" && checkUser(user, "a")) {
+                a.appendDetails();
             }
         }
         else if (command[0] == "update" && command.size() == 2) {
@@ -380,6 +383,7 @@ int main() {
         p.clear();
         e.clear();
         c.clear();
+        a.clear();
     } while (command[0] != "exit");
 
 
