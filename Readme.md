@@ -11,8 +11,7 @@ Aotearoa Treasures Ltd. is a boutique retailer specializing in New Zealand-made 
 - [Usage](#usage)
 - [Data Files](#data-files)
 - [User Journey](#user-journey)
-- [Contributing](#contributing)
-- [License](#license)
+- [Command Reference](#commands-reference)
 
 ---
 
@@ -49,11 +48,11 @@ Aotearoa Treasures Ltd. is a boutique retailer specializing in New Zealand-made 
 
 ```
 ATS/
-├── ATS.cpp                # Main application entry point
-├── employee.cpp/hpp       # Employee logic and data handling
-├── customer.cpp/hpp       # Customer logic and data handling
-├── admin_.cpp/hpp         # Admin logic and data handling
-├── product.cpp/hpp        # Product logic and data handling
+├── ATS.cpp                # Main file of application
+├── employee.cpp/hpp       # Employee records management functions
+├── customer.cpp/hpp       # Customer records management functions
+├── admin_.cpp/hpp         # Admin records management functions
+├── product.cpp/hpp        # Product records management functions
 ├── commonfunc.cpp/hpp     # Common utility functions (validation, etc.)
 ├── modcsv.cpp/hpp         # CSV read/write utilities
 ├── admin_details.csv      # Admin user data
@@ -62,7 +61,7 @@ ATS/
 ├── product_details.csv    # Product records
 ├── order_details.csv      # Purchase records
 ├── employee_roster.csv    # Staff rosters
-└── help.csv               # Help and documentation
+└── help.csv               # Command lines
 ```
 
 ## Getting Started
@@ -70,19 +69,13 @@ ATS/
 ### Prerequisites
 
 - C++14 compatible compiler (e.g., MSVC, GCC, Clang)
-- CMake or Visual Studio 2022 for building
+- Visual Studio 2022 for building
 
 ### Build Instructions
 
 #### Using Visual Studio:
 1. Open the project folder in Visual Studio 2022
 2. Build the solution (`Ctrl+Shift+B`)
-
-#### Using Command Line:
-```bash
-g++ -std=c++14 -o ATS ATS.cpp employee.cpp customer.cpp admin_.cpp product.cpp commonfunc.cpp modcsv.cpp
-./ATS
-```
 
 ---
 
@@ -115,22 +108,26 @@ g++ -std=c++14 -o ATS ATS.cpp employee.cpp customer.cpp admin_.cpp product.cpp c
 
 ```mermaid
 journey
-    title Aotearoa Treasures User Journey
-    section Start
+    title Example User Journey - Aotearoa Treasures Inventory System
+    section Customer Journey
       User opens application: 5: User
-      User selects role (Admin/User): 4: User
-    section Admin Actions
-      Admin logs in: 4: Admin
-      View inventory across stores: 4: Admin
-      View low stock items: 3: Admin
-      Add/update/delete products: 4: Admin
-      Add/update/delete employees: 3: Admin
-      Update staff roster: 3: Admin
-    section User Actions
-      Select store: 4: User
-      Browse products by category/price: 4: User
-      Make purchase: 5: User
-      Inventory updates in real-time: 5: System
+      User selects "signup" to create an account: 4: User
+      User logs in with "login": 4: User
+      User selects store location (e.g., Wellington): 4: User
+      User views products by category with "show product category <category name>": 4: User
+      User sorts products by price with "show product asc price": 3: User
+      User buys a product with "buy <product Id>": 5: User
+      Inventory updates for the selected store: 5: System
+      User logs out with "logout": 3: User
+
+    section Admin Journey
+      Admin logs in with "login admin": 5: Admin
+      Admin views all products with "show product": 4: Admin
+      Admin checks low stock with "alert quantity": 4: Admin
+      Admin adds a new product with "add product": 4: Admin
+      Admin updates an employee with "update employee": 3: Admin
+      Admin views and updates roster with "show roster" and "update roster": 3: Admin
+      Admin logs out with "logout": 3: Admin
 ```
 
 ---
@@ -162,6 +159,11 @@ The system operates through a command-line interface with the following commands
 | `show product desc quantity` | Show products in descending order by quantity |
 | `alert quantity` | Show products with less than 5 quantity remaining |
 
+### Admin Management Commands (Admin Only)
+| Command | Function |
+|---------|-----------|
+| `add admin` | Add a new admin |
+
 ### Employee Management Commands (Admin Only)
 | Command | Function |
 |---------|-----------|
@@ -191,19 +193,3 @@ The system operates through a command-line interface with the following commands
 | `help` | Display list of available commands |
 
 > **Note**: Commands marked as "Admin Only" require admin login to execute.
-
----
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
----
-
-## License
-
-This project is licensed under the terms specified in the LICENSE file.
-
----
-
-**Aotearoa Treasures Ltd.** — *Empowering authentic Kiwi retail with smart inventory and staff management.*

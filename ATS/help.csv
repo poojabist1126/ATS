@@ -6,6 +6,7 @@ logout,To logout
 add product,To add product (must be logged in as admin)
 add employee,To add employee (must be logged in as admin)
 add roster,To add roster (must be logged in as admin)
+add admin,To add admin (must be logged in as admin)
 update product,To update details of products (must be logged in as admin)
 update employee,To update details of employees (must be logged in as admin)
 update roster,To update details of rosters (must be logged in as admin)
