@@ -11,8 +11,7 @@ Aotearoa Treasures Ltd. is a boutique retailer specializing in New Zealand-made 
 - [Usage](#usage)
 - [Data Files](#data-files)
 - [User Journey](#user-journey)
-- [Contributing](#contributing)
-- [License](#license)
+- [Command Reference](#commands-reference)
 
 ---
 
@@ -49,11 +48,11 @@ Aotearoa Treasures Ltd. is a boutique retailer specializing in New Zealand-made 
 
 ```
 ATS/
-├── ATS.cpp                # Main application entry point
-├── employee.cpp/hpp       # Employee logic and data handling
-├── customer.cpp/hpp       # Customer logic and data handling
-├── admin_.cpp/hpp         # Admin logic and data handling
-├── product.cpp/hpp        # Product logic and data handling
+├── ATS.cpp                # Main file of application
+├── employee.cpp/hpp       # Employee records management functions
+├── customer.cpp/hpp       # Customer records management functions
+├── admin_.cpp/hpp         # Admin records management functions
+├── product.cpp/hpp        # Product records management functions
 ├── commonfunc.cpp/hpp     # Common utility functions (validation, etc.)
 ├── modcsv.cpp/hpp         # CSV read/write utilities
 ├── admin_details.csv      # Admin user data
@@ -62,7 +61,7 @@ ATS/
 ├── product_details.csv    # Product records
 ├── order_details.csv      # Purchase records
 ├── employee_roster.csv    # Staff rosters
-└── help.csv               # Help and documentation
+└── help.csv               # Command lines
 ```
 
 ## Getting Started
@@ -70,19 +69,13 @@ ATS/
 ### Prerequisites
 
 - C++14 compatible compiler (e.g., MSVC, GCC, Clang)
-- CMake or Visual Studio 2022 for building
+- Visual Studio 2022 for building
 
 ### Build Instructions
 
 #### Using Visual Studio:
 1. Open the project folder in Visual Studio 2022
 2. Build the solution (`Ctrl+Shift+B`)
-
-#### Using Command Line:
-```bash
-g++ -std=c++14 -o ATS ATS.cpp employee.cpp customer.cpp admin_.cpp product.cpp commonfunc.cpp modcsv.cpp
-./ATS
-```
 
 ---
 
