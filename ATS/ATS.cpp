@@ -143,7 +143,7 @@ int main() {
         command = getCommand();
 
         userAuthentication(user, command); // user authentication
-        
+
         if (command[0] == "logout" && checkUser(user, "") && command.size() == 1) {
             // to logout executes only if user is registered
             user["username"] = "";
@@ -214,7 +214,8 @@ int main() {
                     // display all the products
                     products = p.getProducts();
                     printTable(products, -1);
-                } else if (command.size() == 4) {
+                }
+                else if (command.size() == 4) {
                     if (command[2] == "category") {
                         // only display the product of specific category
                         products = p.getProductsByCategory(command[3]);
@@ -260,7 +261,7 @@ int main() {
                     employees = e.getUsers();
                     printTable(employees);
                 }
-                else if(command.size() == 4) {
+                else if (command.size() == 4) {
                     if (command[2] == "position") {
                         // only display the employee of specific position 
                         employees = e.getEmployeesByPosition(command[3]);
@@ -278,7 +279,7 @@ int main() {
         else if (command[0] == "buy" && checkUser(user, "c")) {
             // buy product
             vector<string> product;
-            
+
             if (command.size() == 2) {
                 string quantity;
                 string res;
@@ -321,7 +322,7 @@ int main() {
                 cout << "Order will delivered within T+3 days." << endl;
                 cout << "Payment method Cash on Delivery" << endl;
                 cout << "Location: " << product[5] << endl;
-            }            
+            }
         }
         else if (command[0] == "delete" && command.size() == 2) {
             if (command[1] == "employee" && checkUser(user, "a")) {
