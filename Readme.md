@@ -108,22 +108,26 @@ ATS/
 
 ```mermaid
 journey
-    title Aotearoa Treasures User Journey
-    section Start
+    title Example User Journey - Aotearoa Treasures Inventory System
+    section Customer Journey
       User opens application: 5: User
-      User selects role (Admin/User): 4: User
-    section Admin Actions
-      Admin logs in: 4: Admin
-      View inventory across stores: 4: Admin
-      View low stock items: 3: Admin
-      Add/update/delete products: 4: Admin
-      Add/update/delete employees: 3: Admin
-      Update staff roster: 3: Admin
-    section User Actions
-      Select store: 4: User
-      Browse products by category/price: 4: User
-      Make purchase: 5: User
-      Inventory updates in real-time: 5: System
+      User selects "signup" to create an account: 4: User
+      User logs in with "login": 4: User
+      User selects store location (e.g., Wellington): 4: User
+      User views products by category with "show product category <category name>": 4: User
+      User sorts products by price with "show product asc price": 3: User
+      User buys a product with "buy <product Id>": 5: User
+      Inventory updates for the selected store: 5: System
+      User logs out with "logout": 3: User
+
+    section Admin Journey
+      Admin logs in with "login admin": 5: Admin
+      Admin views all products with "show product": 4: Admin
+      Admin checks low stock with "alert quantity": 4: Admin
+      Admin adds a new product with "add product": 4: Admin
+      Admin updates an employee with "update employee": 3: Admin
+      Admin views and updates roster with "show roster" and "update roster": 3: Admin
+      Admin logs out with "logout": 3: Admin
 ```
 
 ---
@@ -154,6 +158,11 @@ The system operates through a command-line interface with the following commands
 | `show product desc price` | Show products in descending order by price |
 | `show product desc quantity` | Show products in descending order by quantity |
 | `alert quantity` | Show products with less than 5 quantity remaining |
+
+### Admin Management Commands (Admin Only)
+| Command | Function |
+|---------|-----------|
+| `add admin` | Add a new admin |
 
 ### Employee Management Commands (Admin Only)
 | Command | Function |
