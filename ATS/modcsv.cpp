@@ -22,7 +22,6 @@ void writeCsvFile(const std::string& filename, const std::vector<std::vector<std
         }
         outputFile.close();
 
-        std::cout << "Successfull." << std::endl;
     }
     else {
         std::cerr << "Error: Unable to access data." << std::endl;
@@ -48,7 +47,6 @@ std::vector<std::vector<std::string>> readCsvFile(const std::string& filename) {
         }
         inputFile.close();
 
-        std::cout << "Successfull." << std::endl;
     }
     else {
         std::cerr << "Error: Unable access the information." << std::endl;
